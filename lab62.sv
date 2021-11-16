@@ -166,6 +166,9 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	color_mapper cm(.BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue));
 	
 	ball b(.Reset(Reset_h), .frame_clk(VGA_VS) , .keycode(keycode), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig));
+	
+	// only read from our spritesheet RAM
+	frameRAM ram_spritesheet(.data_In(), .write_address(), .read_address(), .we(1'b0), .Clk(MAX10_CLK1_50), .data_Out());
 
 
 endmodule
