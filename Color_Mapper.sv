@@ -13,6 +13,9 @@
 //-------------------------------------------------------------------------
 
 module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
+								input blank,
+								input logic [23:0] data_out,
+							  output logic	[18:0] addr,
                        output logic [7:0]  Red, Green, Blue );
     
     logic ball_on;
@@ -22,8 +25,9 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
     assign DistY = DrawY - BallY;
     assign Size = Ball_size;
 	 
-	 logic [15:0] mem_addr_in;
-	  
+	 logic [23:0] hex_color;
+	 logic mask;
+	 
     always_comb
     begin:Ball_on_proc
         if ( ( DistX*DistX + DistY*DistY) <= (Size * Size) ) 
@@ -32,24 +36,39 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
             ball_on = 1'b0;
      end 
 
-// map dimensions: 224 x 247 = 55328 pixels	  
+	 map_mask(.x(DrawX), .y(DrawY), .mask(mask));
 		 
     always_comb
     begin:RGB_Display
-	 // draw PacMan
-        if ((ball_on == 1'b1)) 
-        begin 
-            Red = 8'hff;
-            Green = 8'h55;
-            Blue = 8'h00;
-        end
-	 // draw background maze
-        else 
-        begin 
-            Red = 8'h00; 
-            Green = 8'h00;
-            Blue = 8'h7f - DrawX[9:3];
-        end      
+		Red = 8'h00;
+		Green = 8'h00;
+		Blue = 8'h00;
+		if(blank == 0)
+			begin
+				Red = 8'h00;
+				Green = 8'h00;
+				Blue = 8'h00;
+			end
+		else
+			begin
+				 // draw PacMan
+//				if(DrawX < 300 && DrawY < 328)
+//					begin
+					  if ((ball_on == 1'b1)) 
+					  begin 
+							Red = 8'hff;
+							Green = 8'h55;
+							Blue = 8'h00;
+					  end
+				 // draw background maze
+					  else if((mask == 1'b1))
+					  begin 
+							Red = 8'h00; 
+							Green = 8'h00;
+							Blue = 8'hff;
+						end
+//					end
+			end
     end 
     
 endmodule
