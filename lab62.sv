@@ -166,12 +166,12 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 
 	vga_controller vga(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .hs(VGA_HS), .vs(VGA_VS), .pixel_clk(VGA_Clk), .blank(blank), .sync(sync), .DrawX(drawxsig), .DrawY(drawysig));
 	
-	color_mapper cm(.BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .addr(curr_addr), .data_out(data_out), .blank(blank));
+	color_mapper cm(.BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .addr(curr_addr), .data_out(data_out), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk));
 	
 	ball b(.Reset(Reset_h), .frame_clk(VGA_VS) , .keycode(keycode), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig));
 	
 	// only read from our spritesheet RAM
-	frameRAM ram_spritesheet(.data_In(), .write_address(), .read_address(curr_addr), .we(1'b0), .Clk(MAX10_CLK1_50), .data_Out(data_out));
+//	frameRAM ram_spritesheet(.data_In(), .write_address(), .read_address(curr_addr), .we(1'b0), .Clk(MAX10_CLK1_50), .data_Out(data_out));
 
 
 endmodule

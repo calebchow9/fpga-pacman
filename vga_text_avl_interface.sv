@@ -153,11 +153,7 @@ always_ff @(posedge VGA_Clk)
 								red <= (inverse == 0) ? palette[fgd_idx[3:1]][24:21] : palette[bkg_idx[3:1]][24:21];
 								green <= (inverse == 0) ? palette[fgd_idx[3:1]][20:17] : palette[bkg_idx[3:1]][20:17];
 								blue <= (inverse == 0) ? palette[fgd_idx[3:1]][16:13] : palette[bkg_idx[3:1]][16:13];
-							end
-//						red <= (inverse == 0) ? 4'b1111 : 4'b0000;
-//						green <= (inverse == 0) ? 4'b1111 : 4'b0000;
-//						blue <= (inverse == 0) ? 4'b1111 : 4'b0000;
-						
+							end	
 					end
 				// background
 				else
@@ -174,9 +170,6 @@ always_ff @(posedge VGA_Clk)
 								green <= (inverse == 1) ? palette[fgd_idx[3:1]][20:17] : palette[bkg_idx[3:1]][20:17];
 								blue <= (inverse == 1) ? palette[fgd_idx[3:1]][16:13] : palette[bkg_idx[3:1]][16:13];
 							end
-//						red <= (inverse == 0) ? 4'b0000 : 4'b1111;
-//						green <= (inverse == 0) ? 4'b0000 : 4'b1111;
-//						blue <= (inverse == 0) ? 4'b0000: 4'b1111;
 					end
 				end
 			end
