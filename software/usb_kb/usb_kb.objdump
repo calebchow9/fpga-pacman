@@ -35,49 +35,49 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   8 .debug_aranges 00000fc8  00000000  00000000  00015768  2**3
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_info   00026529  00000000  00000000  00016730  2**0
+  9 .debug_info   00026523  00000000  00000000  00016730  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00009b86  00000000  00000000  0003cc59  2**0
+ 10 .debug_abbrev 00009b86  00000000  00000000  0003cc53  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_line   0000c1fe  00000000  00000000  000467df  2**0
+ 11 .debug_line   0000c1fe  00000000  00000000  000467d9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_frame  00002858  00000000  00000000  000529e0  2**2
+ 12 .debug_frame  00002858  00000000  00000000  000529d8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    000042dd  00000000  00000000  00055238  2**0
+ 13 .debug_str    000042d9  00000000  00000000  00055230  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_loc    00017b11  00000000  00000000  00059515  2**0
+ 14 .debug_loc    00017b11  00000000  00000000  00059509  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_alt_sim_info 00000040  00000000  00000000  00071028  2**2
+ 15 .debug_alt_sim_info 00000040  00000000  00000000  0007101c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_ranges 00001930  00000000  00000000  00071068  2**3
+ 16 .debug_ranges 00001930  00000000  00000000  00071060  2**3
                   CONTENTS, READONLY, DEBUGGING
- 17 .thread_model 00000003  00000000  00000000  0007620a  2**0
+ 17 .thread_model 00000003  00000000  00000000  00076202  2**0
                   CONTENTS, READONLY
- 18 .cpu          0000000c  00000000  00000000  0007620d  2**0
+ 18 .cpu          0000000c  00000000  00000000  00076205  2**0
                   CONTENTS, READONLY
- 19 .qsys         00000001  00000000  00000000  00076219  2**0
+ 19 .qsys         00000001  00000000  00000000  00076211  2**0
                   CONTENTS, READONLY
- 20 .simulation_enabled 00000001  00000000  00000000  0007621a  2**0
+ 20 .simulation_enabled 00000001  00000000  00000000  00076212  2**0
                   CONTENTS, READONLY
- 21 .sysid_hash   00000004  00000000  00000000  0007621b  2**0
+ 21 .sysid_hash   00000004  00000000  00000000  00076213  2**0
                   CONTENTS, READONLY
- 22 .sysid_base   00000004  00000000  00000000  0007621f  2**0
+ 22 .sysid_base   00000004  00000000  00000000  00076217  2**0
                   CONTENTS, READONLY
- 23 .sysid_time   00000004  00000000  00000000  00076223  2**0
+ 23 .sysid_time   00000004  00000000  00000000  0007621b  2**0
                   CONTENTS, READONLY
- 24 .stderr_dev   0000000b  00000000  00000000  00076227  2**0
+ 24 .stderr_dev   0000000b  00000000  00000000  0007621f  2**0
                   CONTENTS, READONLY
- 25 .stdin_dev    0000000b  00000000  00000000  00076232  2**0
+ 25 .stdin_dev    0000000b  00000000  00000000  0007622a  2**0
                   CONTENTS, READONLY
- 26 .stdout_dev   0000000b  00000000  00000000  0007623d  2**0
+ 26 .stdout_dev   0000000b  00000000  00000000  00076235  2**0
                   CONTENTS, READONLY
- 27 .sopc_system_name 00000008  00000000  00000000  00076248  2**0
+ 27 .sopc_system_name 00000008  00000000  00000000  00076240  2**0
                   CONTENTS, READONLY
- 28 .quartus_project_dir 00000022  00000000  00000000  00076250  2**0
+ 28 .quartus_project_dir 00000020  00000000  00000000  00076248  2**0
                   CONTENTS, READONLY
- 29 .jdi          00004f1b  00000000  00000000  00076272  2**0
+ 29 .jdi          00004f1b  00000000  00000000  00076268  2**0
                   CONTENTS, READONLY
- 30 .sopcinfo     0007653d  00000000  00000000  0007b18d  2**0
+ 30 .sopcinfo     0007653d  00000000  00000000  0007b183  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 04000000 l    d  .entry	00000000 .entry
@@ -1174,14 +1174,14 @@ void setLED(int LED) {
  4000468:	e13fff15 	stw	r4,-4(fp)
 	IOWR_ALTERA_AVALON_PIO_DATA(LEDS_PIO_BASE,
  400046c:	00820034 	movhi	r2,2048
- 4000470:	10946004 	addi	r2,r2,20864
+ 4000470:	10846004 	addi	r2,r2,4480
  4000474:	10c00037 	ldwio	r3,0(r2)
  4000478:	01000044 	movi	r4,1
  400047c:	e0bfff17 	ldw	r2,-4(fp)
  4000480:	2084983a 	sll	r2,r4,r2
  4000484:	1886b03a 	or	r3,r3,r2
  4000488:	00820034 	movhi	r2,2048
- 400048c:	10946004 	addi	r2,r2,20864
+ 400048c:	10846004 	addi	r2,r2,4480
  4000490:	10c00035 	stwio	r3,0(r2)
 			(IORD_ALTERA_AVALON_PIO_DATA(LEDS_PIO_BASE) | (0x001 << LED)));
 }
@@ -1200,7 +1200,7 @@ void clearLED(int LED) {
  40004b4:	e13fff15 	stw	r4,-4(fp)
 	IOWR_ALTERA_AVALON_PIO_DATA(LEDS_PIO_BASE,
  40004b8:	00820034 	movhi	r2,2048
- 40004bc:	10946004 	addi	r2,r2,20864
+ 40004bc:	10846004 	addi	r2,r2,4480
  40004c0:	10c00037 	ldwio	r3,0(r2)
  40004c4:	01000044 	movi	r4,1
  40004c8:	e0bfff17 	ldw	r2,-4(fp)
@@ -1208,7 +1208,7 @@ void clearLED(int LED) {
  40004d0:	0084303a 	nor	r2,zero,r2
  40004d4:	1886703a 	and	r3,r3,r2
  40004d8:	00820034 	movhi	r2,2048
- 40004dc:	10946004 	addi	r2,r2,20864
+ 40004dc:	10846004 	addi	r2,r2,4480
  40004e0:	10c00035 	stwio	r3,0(r2)
 			(IORD_ALTERA_AVALON_PIO_DATA(LEDS_PIO_BASE) & ~(0x001 << LED)));
 
@@ -1234,7 +1234,7 @@ void printSignedHex0(signed char value) {
  4000514:	e03ffe45 	stb	zero,-7(fp)
 	WORD pio_val = IORD_ALTERA_AVALON_PIO_DATA(HEX_DIGITS_PIO_BASE);
  4000518:	00820034 	movhi	r2,2048
- 400051c:	10945804 	addi	r2,r2,20832
+ 400051c:	10845804 	addi	r2,r2,4448
  4000520:	10800037 	ldwio	r2,0(r2)
  4000524:	e0bffe8d 	sth	r2,-6(fp)
 	if (value < 0) {
@@ -1310,7 +1310,7 @@ void printSignedHex0(signed char value) {
 	IOWR_ALTERA_AVALON_PIO_DATA(HEX_DIGITS_PIO_BASE, pio_val);
  40005f0:	e0fffe8b 	ldhu	r3,-6(fp)
  40005f4:	00820034 	movhi	r2,2048
- 40005f8:	10945804 	addi	r2,r2,20832
+ 40005f8:	10845804 	addi	r2,r2,4448
  40005fc:	10c00035 	stwio	r3,0(r2)
 }
  4000600:	0001883a 	nop
@@ -1335,7 +1335,7 @@ void printSignedHex1(signed char value) {
  4000634:	e03ffd45 	stb	zero,-11(fp)
 	DWORD pio_val = IORD_ALTERA_AVALON_PIO_DATA(HEX_DIGITS_PIO_BASE);
  4000638:	00820034 	movhi	r2,2048
- 400063c:	10945804 	addi	r2,r2,20832
+ 400063c:	10845804 	addi	r2,r2,4448
  4000640:	10800037 	ldwio	r2,0(r2)
  4000644:	e0bffe15 	stw	r2,-8(fp)
 	if (value < 0) {
@@ -1421,7 +1421,7 @@ void printSignedHex1(signed char value) {
 	IOWR_ALTERA_AVALON_PIO_DATA(HEX_DIGITS_PIO_BASE, pio_val);
  4000730:	e0fffe17 	ldw	r3,-8(fp)
  4000734:	00820034 	movhi	r2,2048
- 4000738:	10945804 	addi	r2,r2,20832
+ 4000738:	10845804 	addi	r2,r2,4448
  400073c:	10c00035 	stwio	r3,0(r2)
 }
  4000740:	0001883a 	nop
@@ -2506,7 +2506,7 @@ void MAXreg_wr(BYTE reg, BYTE val) {
  400156c:	01800084 	movi	r6,2
  4001570:	000b883a 	mov	r5,zero
  4001574:	01020034 	movhi	r4,2048
- 4001578:	21142804 	addi	r4,r4,20640
+ 4001578:	21042804 	addi	r4,r4,4256
  400157c:	40112580 	call	4011258 <alt_avalon_spi_command>
  4001580:	1000030e 	bge	r2,zero,4001590 <MAXreg_wr+0x68>
 		printf("error");
@@ -2627,7 +2627,7 @@ BYTE* MAXbytes_wr(BYTE reg, BYTE nbytes, BYTE* data) {
  40016c4:	180d883a 	mov	r6,r3
  40016c8:	000b883a 	mov	r5,zero
  40016cc:	01020034 	movhi	r4,2048
- 40016d0:	21142804 	addi	r4,r4,20640
+ 40016d0:	21042804 	addi	r4,r4,4256
  40016d4:	40112580 	call	4011258 <alt_avalon_spi_command>
  40016d8:	1000030e 	bge	r2,zero,40016e8 <MAXbytes_wr+0x140>
 		printf("error");
@@ -2675,7 +2675,7 @@ BYTE MAXreg_rd(BYTE reg) {
  4001744:	01800044 	movi	r6,1
  4001748:	000b883a 	mov	r5,zero
  400174c:	01020034 	movhi	r4,2048
- 4001750:	21142804 	addi	r4,r4,20640
+ 4001750:	21042804 	addi	r4,r4,4256
  4001754:	40112580 	call	4011258 <alt_avalon_spi_command>
  4001758:	1000030e 	bge	r2,zero,4001768 <MAXreg_rd+0x58>
 		printf("error");
@@ -2721,7 +2721,7 @@ BYTE* MAXbytes_rd(BYTE reg, BYTE nbytes, BYTE* data) {
  40017bc:	01800044 	movi	r6,1
  40017c0:	000b883a 	mov	r5,zero
  40017c4:	01020034 	movhi	r4,2048
- 40017c8:	21142804 	addi	r4,r4,20640
+ 40017c8:	21042804 	addi	r4,r4,4256
  40017cc:	40112580 	call	4011258 <alt_avalon_spi_command>
  40017d0:	1000030e 	bge	r2,zero,40017e0 <MAXbytes_rd+0x60>
 		printf("error");
@@ -2752,7 +2752,7 @@ void MAX3421E_reset(void) {
 	IOWR_ALTERA_AVALON_PIO_DATA(USB_RST_BASE, 0);
  4001810:	0007883a 	mov	r3,zero
  4001814:	00820034 	movhi	r2,2048
- 4001818:	10945404 	addi	r2,r2,20816
+ 4001818:	10845404 	addi	r2,r2,4432
  400181c:	10c00035 	stwio	r3,0(r2)
 	usleep(1000000);
  4001820:	010003f4 	movhi	r4,15
@@ -2761,7 +2761,7 @@ void MAX3421E_reset(void) {
 	IOWR_ALTERA_AVALON_PIO_DATA(USB_RST_BASE, 1);
  400182c:	00c00044 	movi	r3,1
  4001830:	00820034 	movhi	r2,2048
- 4001834:	10945404 	addi	r2,r2,20816
+ 4001834:	10845404 	addi	r2,r2,4432
  4001838:	10c00035 	stwio	r3,0(r2)
 	BYTE tmp = 0;
  400183c:	e03fff05 	stb	zero,-4(fp)
@@ -3091,7 +3091,7 @@ void MAX3421E_Task(void) {
  4001af4:	d839883a 	mov	fp,sp
 	if ( IORD_ALTERA_AVALON_PIO_DATA(USB_IRQ_BASE) == 0) {
  4001af8:	00820034 	movhi	r2,2048
- 4001afc:	10944c04 	addi	r2,r2,20784
+ 4001afc:	10844c04 	addi	r2,r2,4400
  4001b00:	10800037 	ldwio	r2,0(r2)
  4001b04:	1000041e 	bne	r2,zero,4001b18 <MAX3421E_Task+0x30>
 		printf("MAX interrupt\n\r");
@@ -3103,7 +3103,7 @@ void MAX3421E_Task(void) {
 	}
 	if ( IORD_ALTERA_AVALON_PIO_DATA(USB_GPX_BASE) == 1) {
  4001b18:	00820034 	movhi	r2,2048
- 4001b1c:	10945004 	addi	r2,r2,20800
+ 4001b1c:	10845004 	addi	r2,r2,4416
  4001b20:	10800037 	ldwio	r2,0(r2)
  4001b24:	10800058 	cmpnei	r2,r2,1
  4001b28:	1000041e 	bne	r2,zero,4001b3c <MAX3421E_Task+0x54>
@@ -3986,7 +3986,7 @@ void USB_Task( void )
  4002370:	1000683a 	jmp	r2
  4002374:	0400238c 	andi	r16,zero,142
  4002378:	040023c4 	movi	r16,143
- 400237c:	04002400 	call	400240 <__alt_mem_sdram-0x3bffdc0>
+ 400237c:	04002400 	call	400240 <__reset-0x3bffdc0>
  4002380:	04002424 	muli	r16,zero,144
  4002384:	04002464 	muli	r16,zero,145
  4002388:	04002478 	rdprs	r16,zero,145
@@ -5141,7 +5141,7 @@ char* ConvUTF8ToStr(BYTE* utf8, BYTE length)
  4003098:	04003b24 	muli	r16,zero,236
  400309c:	04003d1c 	xori	r16,zero,244
  40030a0:	040031e0 	cmpeqi	r16,zero,199
- 40030a4:	04003340 	call	400334 <__alt_mem_sdram-0x3bffccc>
+ 40030a4:	04003340 	call	400334 <__reset-0x3bffccc>
  40030a8:	04003d1c 	xori	r16,zero,244
  40030ac:	04003390 	cmplti	r16,zero,206
  40030b0:	0400339c 	xori	r16,zero,206
@@ -5194,18 +5194,18 @@ char* ConvUTF8ToStr(BYTE* utf8, BYTE length)
  400316c:	04003d1c 	xori	r16,zero,244
  4003170:	04003d1c 	xori	r16,zero,244
  4003174:	04003d1c 	xori	r16,zero,244
- 4003178:	04003cc0 	call	4003cc <__alt_mem_sdram-0x3bffc34>
- 400317c:	04003c40 	call	4003c4 <__alt_mem_sdram-0x3bffc3c>
+ 4003178:	04003cc0 	call	4003cc <__reset-0x3bffc34>
+ 400317c:	04003c40 	call	4003c4 <__reset-0x3bffc3c>
  4003180:	040034a0 	cmpeqi	r16,zero,210
  4003184:	040034a0 	cmpeqi	r16,zero,210
  4003188:	040034a0 	cmpeqi	r16,zero,210
  400318c:	04003c60 	cmpeqi	r16,zero,241
- 4003190:	04003c40 	call	4003c4 <__alt_mem_sdram-0x3bffc3c>
+ 4003190:	04003c40 	call	4003c4 <__reset-0x3bffc3c>
  4003194:	04003d1c 	xori	r16,zero,244
  4003198:	04003d1c 	xori	r16,zero,244
  400319c:	04003c6c 	andhi	r16,zero,241
  40031a0:	04003d1c 	xori	r16,zero,244
- 40031a4:	04003c80 	call	4003c8 <__alt_mem_sdram-0x3bffc38>
+ 40031a4:	04003c80 	call	4003c8 <__reset-0x3bffc38>
  40031a8:	04003b04 	movi	r16,236
  40031ac:	040031ec 	andhi	r16,zero,199
  40031b0:	04003b3c 	xorhi	r16,zero,236
@@ -19720,7 +19720,7 @@ void alt_sys_init( void )
  401079c:	01800084 	movi	r6,2
  40107a0:	000b883a 	mov	r5,zero
  40107a4:	01020034 	movhi	r4,2048
- 40107a8:	21141004 	addi	r4,r4,20544
+ 40107a8:	21041004 	addi	r4,r4,4160
  40107ac:	40114cc0 	call	40114cc <alt_avalon_timer_sc_init>
     ALTERA_AVALON_JTAG_UART_INIT ( JTAG_UART_0, jtag_uart_0);
  40107b0:	000d883a 	mov	r6,zero
@@ -22941,7 +22941,7 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
  4012490:	d9400015 	stw	r5,0(sp)
  4012494:	d9800115 	stw	r6,4(sp)
  4012498:	d9c00215 	stw	r7,8(sp)
- 401249c:	00000000 	call	0 <__alt_mem_sdram-0x4000000>
+ 401249c:	00000000 	call	0 <__reset-0x4000000>
  40124a0:	d9400017 	ldw	r5,0(sp)
  40124a4:	d9800117 	ldw	r6,4(sp)
  40124a8:	d9c00217 	ldw	r7,8(sp)
@@ -23025,7 +23025,7 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
  40125d8:	10003226 	beq	r2,zero,40126a4 <__call_exitprocs+0x178>
  40125dc:	a009883a 	mov	r4,r20
  40125e0:	98800015 	stw	r2,0(r19)
- 40125e4:	00000000 	call	0 <__alt_mem_sdram-0x4000000>
+ 40125e4:	00000000 	call	0 <__reset-0x4000000>
  40125e8:	9d000017 	ldw	r20,0(r19)
  40125ec:	a03fe41e 	bne	r20,zero,4012580 <__alt_data_end+0xfc012580>
  40125f0:	dfc00a17 	ldw	ra,40(sp)
