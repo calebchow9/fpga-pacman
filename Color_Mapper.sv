@@ -13,7 +13,9 @@
 //-------------------------------------------------------------------------
 
 module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
+							  input [9:0] redghostX, redghostY, redghost_size,
 								input logic blank, Clk, VGA_Clk,
+								input logic l_dirX, l_dirY,
 								input logic [23:0] data_out,
 							  output logic	[18:0] addr,
                        output logic [7:0]  Red, Green, Blue );
@@ -37,10 +39,21 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 logic [7:0] sprite_data;
 	 logic [9:0] font_y;
 	 
+	 // pacman logic
+	 logic [23:0] pacman_color;
+	 logic [11:0] pacman_addr;
+	 
+	 // redghost logic
+	 logic [23:0] redghost_color;
+	 logic [8:0] redghost_addr;
+	 logic redghost_mask;
+	 
 	 // modules here
 	 score_ram sr(.data_In(), .write_address(), .read_address(font_read_addr), .we(1'b0), .Clk(Clk), .data_Out(font_data_out));
 	 map_mask mm(.x(DrawX), .y(DrawY), .mask(map_mask));
 	 font_rom fr(.addr(sprite_addr), .data(sprite_data));
+	 pacman_ram pr(.data_In(), .write_address(), .read_address(pacman_addr), .we(1'b0), .Clk(Clk), .data_Out(pacman_color));
+	 redghost_ram rr(.data_In(), .write_address(), .read_address(redghost_addr), .we(1'b0), .Clk(Clk), .data_Out(redghost_color));
 	 
     always_comb
     begin:PacMan_outline
@@ -49,6 +62,15 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
         else 
             ball_on = 1'b0;
      end
+	  
+	  always_comb
+	  begin:Ghost_outline
+		if(DrawX-redghostX <= redghost_size && DrawX-redghostX >= -1*(redghost_size) 
+			&& DrawY-redghostY <= redghost_size && DrawY-redghostY >= -1*(redghost_size) )
+				redghost_mask = 1'b1;
+		else
+			redghost_mask = 1'b0;
+	  end
 	 
 	always_comb
 	begin: Text_outline
@@ -91,10 +113,43 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 					begin
 					// draw PacMan
 					if ((ball_on == 1'b1)) 
-						begin 
-							Red <= 8'hff;
-							Green <= 8'hff;
-							Blue <= 8'h00;
+						begin
+							// initial
+							if(l_dirX == -2 || l_dirY == -2)
+								pacman_addr <= (DrawY-(BallY-Ball_size)) * 26 + DrawX-(BallX-Ball_size);
+							else if(l_dirX == -1 || l_dirX == 1)
+								begin
+									// right mouth
+									if(l_dirX == 1)
+										pacman_addr <= (DrawY-(BallY-Ball_size)) * 26 + DrawX-(BallX-Ball_size);
+									// left mouth
+									else
+										pacman_addr <= (DrawY-(BallY-Ball_size)) * 26 + DrawX-(BallX-Ball_size) + 676;
+								end
+							else if(l_dirY == -1 || l_dirY == 1)
+								begin
+									// down mouth
+									if(l_dirY == 1)
+										pacman_addr <= (DrawY-(BallY-Ball_size)) * 26 + DrawX-(BallX-Ball_size) + (3*676);
+									else
+									// up mouth
+										pacman_addr <= (DrawY-(BallY-Ball_size)) * 26 + DrawX-(BallX-Ball_size) + (2*676);
+								end
+							else
+								// default - up mouth
+								pacman_addr <= (DrawY-(BallY-Ball_size)) * 26 + DrawX-(BallX-Ball_size) + (2*676);
+							
+							Red <= pacman_color[23:16];
+							Green <= pacman_color[15:8];
+							Blue <= pacman_color[7:0];
+						end
+					else if ((redghost_mask == 1'b1))
+						begin
+							redghost_addr <= (DrawY-(redghostY-redghost_size)) * 20 + DrawX-(redghostX-redghost_size);
+							
+							Red <= redghost_color[23:16];
+							Green <= redghost_color[15:8];
+							Blue <= redghost_color[7:0];
 						end
 					else if ((text_mask == 1'b1))
 						begin

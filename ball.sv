@@ -15,10 +15,11 @@
 
 module  ball ( input Reset, frame_clk,
 					input [7:0] keycode,
-               output [9:0]  BallX, BallY, BallS );
+               output [9:0]  BallX, BallY, BallS,
+					output logic last_dirX, last_dirY
+);
     
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion, Ball_Size;
-	 logic wall;
 	 
     parameter [9:0] Ball_X_Center=202;  // Center position on the X axis
     parameter [9:0] Ball_Y_Center=253;  // Center position on the Y axis
@@ -30,6 +31,12 @@ module  ball ( input Reset, frame_clk,
     parameter [9:0] Ball_Y_Step=1;      // Step size on the Y axis
 
     assign Ball_Size = 13;  // assigns the value 4 as a 10-digit binary number, ie "0000000100"
+	 
+	 initial
+		begin
+			last_dirX = -2;
+			last_dirY = -2;
+		end
    
     always_ff @ (posedge Reset or posedge frame_clk )
     begin: Move_Ball
@@ -42,44 +49,33 @@ module  ball ( input Reset, frame_clk,
 				end  
         else 
 				begin
+					// default, if no keys pressed then PacMan doesn't move
+					Ball_Y_Motion <= 0;
+					Ball_X_Motion <= 0;
+					
 					case (keycode)
 						// LEFT
 						8'h04 : begin
-										Ball_Y_Motion <= 0;
-										// edge checks
-										// left wall
-										if(Ball_X_Pos - Ball_Size <= Ball_X_Min)
-											begin
-												Ball_X_Motion <= 0;
-												Ball_Y_Motion <= 0;
-											end
-										else
-											Ball_X_Motion <= -1;
-										
-								  end
-						// RIGHT
-						8'h07 : begin
 									Ball_Y_Motion <= 0;
-									// edge checks
+									// edge check
 									// left wall
 									if(Ball_X_Pos - Ball_Size <= Ball_X_Min)
 										begin
 											Ball_X_Motion <= 0;
 											Ball_Y_Motion <= 0;
 										end
+									else
+										Ball_X_Motion <= -1;
+										
+								  end
+						// RIGHT
+						8'h07 : begin
+									Ball_Y_Motion <= 0;
+									// edge check
 									// right wall
-									else if(Ball_X_Pos + Ball_Size >= Ball_X_Max)
+									if(Ball_X_Pos + Ball_Size >= Ball_X_Max)
 										begin
 											Ball_X_Motion <= 0;
-											Ball_Y_Motion <= 0;
-										end
-									// top wall
-									else if(Ball_Y_Pos - Ball_Size <= Ball_Y_Min)
-										begin
-											Ball_Y_Motion <= 0;
-										end
-									else if(Ball_Y_Pos + Ball_Size >= Ball_Y_Max)
-										begin
 											Ball_Y_Motion <= 0;
 										end
 									else
@@ -89,23 +85,8 @@ module  ball ( input Reset, frame_clk,
 						8'h16 : begin
 									Ball_X_Motion <= 0;
 									// edge checks
-									// left wall
-									if(Ball_X_Pos - Ball_Size <= Ball_X_Min)
-										begin
-											Ball_X_Motion <= 0;
-										end
-									// right wall
-									else if(Ball_X_Pos + Ball_Size >= Ball_X_Max)
-										begin
-											Ball_X_Motion <= 0;
-										end
-									// top wall
-									else if(Ball_Y_Pos - Ball_Size <= Ball_Y_Min)
-										begin
-											Ball_X_Motion <= 0;
-											Ball_Y_Motion <= 0;
-										end
-									else if(Ball_Y_Pos + Ball_Size >= Ball_Y_Max)
+									// bottom wall
+									if(Ball_Y_Pos + Ball_Size >= Ball_Y_Max)
 										begin
 											Ball_X_Motion <= 0;
 											Ball_Y_Motion <= 0;
@@ -117,35 +98,25 @@ module  ball ( input Reset, frame_clk,
 						8'h1A : begin
 									Ball_X_Motion <= 0;
 									// edge checks
-									// left wall
-									if(Ball_X_Pos - Ball_Size <= Ball_X_Min)
-										begin
-											Ball_X_Motion <= 0;
-										end
-									// right wall
-									else if(Ball_X_Pos + Ball_Size >= Ball_X_Max)
-										begin
-											Ball_X_Motion <= 0;
-										end
 									// top wall
-									else if(Ball_Y_Pos - Ball_Size <= Ball_Y_Min)
-										begin
-											Ball_X_Motion <= 0;
-											Ball_Y_Motion <= 0;
-										end
-									else if(Ball_Y_Pos + Ball_Size >= Ball_Y_Max)
-										begin
-											Ball_X_Motion <= 0;
-											Ball_Y_Motion <= 0;
-										end
+									if(Ball_Y_Pos - Ball_Size <= Ball_Y_Min)
+										Ball_Y_Motion <= 0;
 									else
 										Ball_Y_Motion <= -1;
 								 end	  
 						default: ;
 					endcase
 					
-					 Ball_Y_Pos <= (Ball_Y_Pos + Ball_Y_Motion);  // Update ball position
+					// Update PacMan position
+					 Ball_Y_Pos <= (Ball_Y_Pos + Ball_Y_Motion);
 					 Ball_X_Pos <= (Ball_X_Pos + Ball_X_Motion);
+					 
+					 // set last direction - if not moving, then don't update
+					 if(Ball_X_Motion != 0 || Ball_Y_Motion != 0)
+						begin
+							last_dirX <= Ball_X_Motion;
+							last_dirY <= Ball_Y_Motion;
+						end
 				end
 			
 		end  
@@ -155,6 +126,6 @@ module  ball ( input Reset, frame_clk,
     assign BallY = Ball_Y_Pos;
    
     assign BallS = Ball_Size;
-    
+
 
 endmodule

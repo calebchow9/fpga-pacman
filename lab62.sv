@@ -68,7 +68,10 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	logic [3:0] hex_num_4, hex_num_3, hex_num_1, hex_num_0; //4 bit input hex digits
 	logic [1:0] signs;
 	logic [1:0] hundreds;
-	logic [9:0] drawxsig, drawysig, ballxsig, ballysig, ballsizesig;
+	logic [9:0] drawxsig, drawysig;
+	logic [9:0] ballxsig, ballysig, ballsizesig;
+	logic [9:0] redghostxsig, redghostysig, redghostsizesig;
+	
 	logic [7:0] Red, Blue, Green;
 	logic [7:0] keycode;
 
@@ -160,18 +163,16 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	 
 	 logic [18:0] curr_addr;
 	 logic [7:0] data_out;
+	 logic l_dirX, l_dirY;
 
 
 //instantiate a vga_controller, ball, and color_mapper here with the ports.
 
 	vga_controller vga(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .hs(VGA_HS), .vs(VGA_VS), .pixel_clk(VGA_Clk), .blank(blank), .sync(sync), .DrawX(drawxsig), .DrawY(drawysig));
 	
-	color_mapper cm(.BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .addr(curr_addr), .data_out(data_out), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk));
+	color_mapper cm( .redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .addr(curr_addr), .data_out(data_out), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY));
 	
-	ball b(.Reset(Reset_h), .frame_clk(VGA_VS) , .keycode(keycode), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig));
-	
-	// only read from our spritesheet RAM
-//	frameRAM ram_spritesheet(.data_In(), .write_address(), .read_address(curr_addr), .we(1'b0), .Clk(MAX10_CLK1_50), .data_Out(data_out));
+	ball b(.Reset(Reset_h), .frame_clk(VGA_VS) , .keycode(keycode), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
 
-
+	redghost rg(.Reset(Reset_h), .frame_clk(VGA_VS) , .keycode(keycode), .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig));
 endmodule

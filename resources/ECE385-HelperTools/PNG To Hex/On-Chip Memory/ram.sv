@@ -6,21 +6,21 @@
 
 module  frameRAM
 (
-		input [23:0] data_In,
+		input [4:0] data_In,
 		input [18:0] write_address, read_address,
 		input we, Clk,
 
-		output logic [23:0] data_Out
+		output logic [4:0] data_Out
 );
 
 // mem has width of 3 bits and a total of 400 addresses
-logic [23:0] mem [0:300];
+logic [2:0] mem [0:399];
 
 initial
 begin
-//	 $readmemh("C:/Users/caleb/Desktop/fpga-pacman/spritesheet_hex.txt", mem);
-	$readmemh("C:/Users/caleb/Desktop/fpga-pacman/map.txt", mem);
+	 $readmemh("sprite_bytes/tetris_I.txt", mem);
 end
+
 
 always_ff @ (posedge Clk) begin
 	if (we)
