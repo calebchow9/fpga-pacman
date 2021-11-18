@@ -97,10 +97,10 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	assign ARDUINO_IO[6] = 1'b1;
 	
 	//HEX drivers to convert numbers to HEX output
-	HexDriver hex_driver4 (l_dirY_cm, HEX4[6:0]);
+	HexDriver hex_driver4 (l_dirY, HEX4[6:0]);
 	assign HEX4[7] = 1'b1;
 	
-	HexDriver hex_driver3 (l_dirX_cm, HEX3[6:0]);
+	HexDriver hex_driver3 (l_dirX, HEX3[6:0]);
 	assign HEX3[7] = 1'b1;
 	
 	HexDriver hex_driver1 (l_dirY, HEX1[6:0]);
@@ -164,15 +164,13 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	 logic [18:0] curr_addr;
 	 logic [7:0] data_out;
 	 logic [3:0] l_dirX, l_dirY;
-	 logic [3:0] l_dirX_cm;
-	 logic [3:0] l_dirY_cm;
 
 
 //instantiate a vga_controller, ball, and color_mapper here with the ports.
 
 	vga_controller vga(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .hs(VGA_HS), .vs(VGA_VS), .pixel_clk(VGA_Clk), .blank(blank), .sync(sync), .DrawX(drawxsig), .DrawY(drawysig));
 	
-	color_mapper cm( .redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .addr(curr_addr), .data_out(data_out), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY), .l_dirX_cm(l_dirX_cm), .l_dirY_cm(l_dirY_cm));
+	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .addr(curr_addr), .data_out(data_out), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY));
 	
 	ball b(.Reset(Reset_h), .frame_clk(VGA_VS) , .keycode(keycode), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
 

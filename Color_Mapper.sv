@@ -13,22 +13,14 @@
 //-------------------------------------------------------------------------
 
 module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
-							  input [9:0] redghostX, redghostY, redghost_size,
+							  input 			[9:0] redghostX, redghostY, redghost_size,
 								input logic blank, Clk, VGA_Clk,
 								input logic [3:0] l_dirX, l_dirY,
 								input logic [23:0] data_out,
 							  output logic	[18:0] addr,
-                       output logic [7:0]  Red, Green, Blue,
-								output logic [3:0] l_dirX_cm,
-								output logic [3:0] l_dirY_cm);
+                       output logic [7:0]  Red, Green, Blue);
     
     logic ball_on;
-	 assign l_dirX_cm = l_dirX;
-	 assign l_dirY_cm = l_dirY;
-	 
-	 logic [3:0] lx, ly;
-	 assign lx = l_dirX;
-	 assign ly = l_dirY;
 	  
     int DistX, DistY, Size;
 
@@ -79,7 +71,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 //				redghost_mask = 1'b1;
 //		else
 //			redghost_mask = 1'b0;
-		if(DrawX >= 40 && DrawX <= 60 && DrawY >=40 && DrawY <=60)
+		if(DrawX >= 40 && DrawX <= 66 && DrawY >=40 && DrawY <=66)
 			redghost_mask = 1'b1;
 		else
 			redghost_mask = 1'b0;
@@ -132,7 +124,6 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 								pacman_addr <= (DrawY-(BallY-Ball_size)) * 26 + DrawX-(BallX-Ball_size) + (2*676);
 							if(l_dirX == 1 || l_dirX == 3)
 								begin
-//									l_dir_cm <= l_dirX;
 									// right mouth
 									if(l_dirX == 3)
 										begin
@@ -146,7 +137,6 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 								end
 							if(l_dirY == 1 || l_dirY == 3)
 								begin
-//									l_dir_cm <= l_dirY;
 									// down mouth
 									if(l_dirY == 3)
 										begin
@@ -165,14 +155,14 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 						end
 					else if ((redghost_mask == 1'b1))
 						begin
-							redghost_addr <= (DrawY-(redghostY-redghost_size)) * 20 + DrawX-(redghostX-redghost_size);
+							redghost_addr <= (DrawY-(redghostY-redghost_size)) * 26 + DrawX-(redghostX-redghost_size);
 							
-//							Red <= redghost_color[23:16];
-//							Green <= redghost_color[15:8];
-//							Blue <= redghost_color[7:0];
-							Red <= 8'hff;
-							Green <= 8'hff;
-							Blue <= 8'hff;
+							Red <= redghost_color[23:16];
+							Green <= redghost_color[15:8];
+							Blue <= redghost_color[7:0];
+//							Red <= 8'hff;
+//							Green <= 8'hff;
+//							Blue <= 8'hff;
 						end
 					else if ((text_mask == 1'b1))
 						begin

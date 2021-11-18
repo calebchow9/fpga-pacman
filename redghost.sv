@@ -32,8 +32,8 @@ module  redghost ( input Reset, frame_clk,
 	 
 	 always_ff @ (posedge Reset or posedge frame_clk )
 	 begin
-			redghost_X_Pos <= redghost_X_Center;
-			redghost_Y_Pos <= redghost_Y_Center;
+			redghost_X_Pos <= 40;
+			redghost_Y_Pos <= 40;
 	 end
    
 //    always_ff @ (posedge Reset or posedge frame_clk )
