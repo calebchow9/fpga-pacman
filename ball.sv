@@ -16,7 +16,7 @@
 module  ball ( input Reset, frame_clk,
 					input [7:0] keycode,
                output [9:0]  BallX, BallY, BallS,
-					output logic last_dirX, last_dirY
+					output [3:0] last_dirX, last_dirY
 );
     
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion, Ball_Size;
@@ -34,8 +34,9 @@ module  ball ( input Reset, frame_clk,
 	 
 	 initial
 		begin
-			last_dirX = -2;
-			last_dirY = -2;
+			// default up mouth
+			last_dirX <= 0;
+			last_dirY <= 0;
 		end
    
     always_ff @ (posedge Reset or posedge frame_clk )
@@ -62,7 +63,6 @@ module  ball ( input Reset, frame_clk,
 									if(Ball_X_Pos - Ball_Size <= Ball_X_Min)
 										begin
 											Ball_X_Motion <= 0;
-											Ball_Y_Motion <= 0;
 										end
 									else
 										Ball_X_Motion <= -1;
@@ -76,7 +76,6 @@ module  ball ( input Reset, frame_clk,
 									if(Ball_X_Pos + Ball_Size >= Ball_X_Max)
 										begin
 											Ball_X_Motion <= 0;
-											Ball_Y_Motion <= 0;
 										end
 									else
 										Ball_X_Motion <= 1;
@@ -88,7 +87,6 @@ module  ball ( input Reset, frame_clk,
 									// bottom wall
 									if(Ball_Y_Pos + Ball_Size >= Ball_Y_Max)
 										begin
-											Ball_X_Motion <= 0;
 											Ball_Y_Motion <= 0;
 										end
 									else
@@ -114,8 +112,8 @@ module  ball ( input Reset, frame_clk,
 					 // set last direction - if not moving, then don't update
 					 if(Ball_X_Motion != 0 || Ball_Y_Motion != 0)
 						begin
-							last_dirX <= Ball_X_Motion;
-							last_dirY <= Ball_Y_Motion;
+							last_dirX <= Ball_X_Motion + 2;
+							last_dirY <= Ball_Y_Motion + 2;
 						end
 				end
 			

@@ -43,10 +43,10 @@ module score_ram(
 			end
 	end
 
-	always_ff @ (posedge Clk) begin
-		if (we)
-			mem[write_address] <= data_In;
-		data_Out<= mem[read_address];
-	end
+//	always_ff @ (posedge Clk) begin
+//		if (we)
+//			mem[write_address] <= data_In;
+//		data_Out<= mem[read_address];
+//	end
 
 endmodule
