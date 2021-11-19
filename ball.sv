@@ -15,6 +15,7 @@
 
 module  ball ( input Reset, frame_clk,
 					input [7:0] keycode,
+					input mapTL, mapTR, mapBL, mapBR,
                output [9:0]  BallX, BallY, BallS,
 					output [3:0] last_dirX, last_dirY
 );
@@ -23,10 +24,10 @@ module  ball ( input Reset, frame_clk,
 	 
     parameter [9:0] Ball_X_Center=202;  // Center position on the X axis
     parameter [9:0] Ball_Y_Center=253;  // Center position on the Y axis
-    parameter [9:0] Ball_X_Min=7;       // left border of maze
-    parameter [9:0] Ball_X_Max=396;     // right border of maze
-    parameter [9:0] Ball_Y_Min=7;       // top border of maze
-    parameter [9:0] Ball_Y_Max=440;     // bottom border of maze
+    parameter [9:0] Ball_X_Min=0;       // left border of maze
+    parameter [9:0] Ball_X_Max=404;     // right border of maze
+    parameter [9:0] Ball_Y_Min=0;       // top border of maze
+    parameter [9:0] Ball_Y_Max=447;     // bottom border of maze
     parameter [9:0] Ball_X_Step=1;      // Step size on the X axis
     parameter [9:0] Ball_Y_Step=1;      // Step size on the Y axis
 
@@ -65,8 +66,12 @@ module  ball ( input Reset, frame_clk,
 											Ball_X_Motion <= 0;
 										end
 									else
-										Ball_X_Motion <= -1;
-										
+										begin
+											if(mapTL == 0 && mapBL == 0)
+												Ball_X_Motion <= -1;
+											else
+												Ball_X_Motion <= 0;
+										end
 								  end
 						// RIGHT
 						8'h07 : begin
@@ -78,7 +83,12 @@ module  ball ( input Reset, frame_clk,
 											Ball_X_Motion <= 0;
 										end
 									else
-										Ball_X_Motion <= 1;
+										begin
+											if(mapTR == 0 && mapBR == 0)
+												Ball_X_Motion <= 1;
+											else
+												Ball_X_Motion <= 0;
+										end
 								  end
 						// DOWN		  
 						8'h16 : begin
@@ -90,7 +100,12 @@ module  ball ( input Reset, frame_clk,
 											Ball_Y_Motion <= 0;
 										end
 									else
-										Ball_Y_Motion <= 1;
+										begin
+											if(mapBL == 0 && mapBR == 0)
+												Ball_Y_Motion <= 1;
+											else
+												Ball_Y_Motion <= 0;
+										end
 								 end
 						// UP		  
 						8'h1A : begin
@@ -100,7 +115,12 @@ module  ball ( input Reset, frame_clk,
 									if(Ball_Y_Pos - Ball_Size <= Ball_Y_Min)
 										Ball_Y_Motion <= 0;
 									else
-										Ball_Y_Motion <= -1;
+										begin
+											if(mapTL == 0 && mapTR == 0)
+												Ball_Y_Motion <= -1;
+											else
+												Ball_Y_Motion <= 0;
+										end
 								 end	  
 						default: ;
 					endcase
@@ -108,6 +128,18 @@ module  ball ( input Reset, frame_clk,
 					// Update PacMan position
 					 Ball_Y_Pos <= (Ball_Y_Pos + Ball_Y_Motion);
 					 Ball_X_Pos <= (Ball_X_Pos + Ball_X_Motion);
+					 
+					 // wrap around cases
+					 // left -> right
+					 if(Ball_X_Pos <= 10 && Ball_Y_Pos >= 195 && Ball_Y_Pos <= 223)
+						begin
+							Ball_X_Pos <= 385;
+						end
+					 else if(Ball_X_Pos >= 390 && Ball_Y_Pos >= 195 && Ball_Y_Pos <= 223)
+						begin
+							Ball_X_Pos <= 15;
+						end
+					 
 					 
 					 // set last direction - if not moving, then don't update
 					 if(Ball_X_Motion != 0 || Ball_Y_Motion != 0)

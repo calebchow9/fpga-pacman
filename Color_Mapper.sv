@@ -43,6 +43,14 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 logic [23:0] pacman_color;
 	 logic [11:0] pacman_addr;
 	 
+	 // items logic
+	 logic [23:0] items_color;
+	 logic [11:0] items_addr;
+	 logic apple_mask;
+	 logic peas_mask;
+	 logic grapes_mask;
+	 logic drink_mask;
+	 
 	 // redghost logic
 	 logic [23:0] redghost_color;
 	 logic [8:0] redghost_addr;
@@ -54,6 +62,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 map_mask mm(.x(DrawX), .y(DrawY), .mask(map_mask));
 	 font_rom fr(.addr(sprite_addr), .data(sprite_data));
 	 pacman_ram pr(.data_In(), .write_address(), .read_address(pacman_addr), .we(1'b0), .Clk(Clk), .data_Out(pacman_color));
+	 items_ram ir(.data_In(), .write_address(), .read_address(items_addr), .we(1'b0), .Clk(Clk), .data_Out(items_color));
 	 redghost_ram rr(.data_In(), .write_address(), .read_address(redghost_addr), .we(1'b0), .Clk(Clk), .data_Out(redghost_color));
 	 
     always_comb
@@ -66,16 +75,22 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	  
 	  always_comb
 	  begin:Ghost_outline
-//		if(DrawX-redghostX <= redghost_size && DrawX-redghostX >= -1*redghost_size // [-10, 10]
-//			&& DrawY-redghostY <= redghost_size && DrawY-redghostY >= -1*redghost_size)
-//				redghost_mask = 1'b1;
-//		else
-//			redghost_mask = 1'b0;
-		if(DrawX >= 40 && DrawX <= 66 && DrawY >=40 && DrawY <=66)
-			redghost_mask = 1'b1;
+		if(DrawX-redghostX <= redghost_size && DrawX-redghostX >= -1*redghost_size // [-10, 10]
+			&& DrawY-redghostY <= redghost_size && DrawY-redghostY >= -1*redghost_size)
+				redghost_mask = 1'b1;
 		else
 			redghost_mask = 1'b0;
 	  end
+
+	 // draw items
+	 always_comb
+	 begin
+		if(DrawX >= 12 && DrawX <= 37 && DrawY >= 10 && DrawY <= 35)
+			apple_mask = 1'b1;
+		else
+			apple_mask = 1'b0;
+
+	 end
 	 
 	always_comb
 	begin: Text_outline
@@ -94,7 +109,8 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 					text_mask = 1'b1;
 			end
 	end
-		 
+		
+	// actually draw here. order of if statements is the priority of z-layering
     always_ff @(posedge VGA_Clk)
     begin:RGB_Display
 		Red <= 8'h00;
@@ -132,7 +148,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 									// left mouth
 									else
 										begin
-										pacman_addr <= (DrawY-(BallY-Ball_size)) * 26 + DrawX-(BallX-Ball_size) + 676;
+										pacman_addr <= (DrawY-(BallY-Ball_size)) * 26 + DrawX-(BallX-Ball_size) + 676 + 1;
 										end
 								end
 							if(l_dirY == 1 || l_dirY == 3)
@@ -145,7 +161,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 									else
 									// up mouth
 										begin
-										pacman_addr <= (DrawY-(BallY-Ball_size)) * 26 + DrawX-(BallX-Ball_size) + (2*676);
+										pacman_addr <= (DrawY-(BallY-Ball_size) - 1) * 26 + DrawX-(BallX-Ball_size) + (2*676);
 										end
 								end
 							
@@ -160,9 +176,14 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 							Red <= redghost_color[23:16];
 							Green <= redghost_color[15:8];
 							Blue <= redghost_color[7:0];
-//							Red <= 8'hff;
-//							Green <= 8'hff;
-//							Blue <= 8'hff;
+						end
+					else if ((apple_mask == 1'b1))
+						begin
+							items_addr <= (DrawY-10) * 26 + (DrawX-12);
+							
+							Red <= items_color[23:16];
+							Green <= items_color[15:8];
+							Blue <= items_color[7:0];
 						end
 					else if ((text_mask == 1'b1))
 						begin

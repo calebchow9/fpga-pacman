@@ -164,6 +164,7 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	 logic [18:0] curr_addr;
 	 logic [7:0] data_out;
 	 logic [3:0] l_dirX, l_dirY;
+	 logic mapTL, mapTR, mapBL, mapBR;
 
 
 //instantiate a vga_controller, ball, and color_mapper here with the ports.
@@ -172,7 +173,10 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	
 	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .addr(curr_addr), .data_out(data_out), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY));
 	
-	ball b(.Reset(Reset_h), .frame_clk(VGA_VS) , .keycode(keycode), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
+	ball b(.Reset(Reset_h), .frame_clk(VGA_VS) , .keycode(keycode), .mapTL(mapTL), .mapTR(mapTR), .mapBL(mapBL), .mapBR(mapBR), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
 
 	redghost rg(.Reset(Reset_h), .frame_clk(VGA_VS) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig));
+	
+	map_mask mmTop(.x(ballxsig), .y(ballysig), .maskTL(mapTL), .maskTR(mapTR), .maskBL(mapBL), .maskBR(mapBR));
+	
 endmodule

@@ -28,12 +28,12 @@ module  redghost ( input Reset, frame_clk,
     parameter [9:0] redghost_X_Step=1;      // Step size on the X axis
     parameter [9:0] redghost_Y_Step=1;      // Step size on the Y axis
 
-    assign redghost_Size = 10;  // assigns the value 4 as a 10-digit binary number, ie "0000000100"
+    assign redghost_Size = 13;  // assigns the value 4 as a 10-digit binary number, ie "0000000100"
 	 
 	 always_ff @ (posedge Reset or posedge frame_clk )
 	 begin
-			redghost_X_Pos <= 40;
-			redghost_Y_Pos <= 40;
+			redghost_X_Pos <= 200;
+			redghost_Y_Pos <= 200;
 	 end
    
 //    always_ff @ (posedge Reset or posedge frame_clk )
