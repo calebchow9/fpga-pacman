@@ -165,13 +165,18 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	 logic [7:0] data_out;
 	 logic [3:0] l_dirX, l_dirY;
 	 logic mapTL, mapTR, mapBL, mapBR;
+	 logic win, lose;
+	 logic [3:0] fruits;
+	 logic [9:0] score;
 
 
 //instantiate a vga_controller, ball, and color_mapper here with the ports.
 
 	vga_controller vga(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .hs(VGA_HS), .vs(VGA_VS), .pixel_clk(VGA_Clk), .blank(blank), .sync(sync), .DrawX(drawxsig), .DrawY(drawysig));
 	
-	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .addr(curr_addr), .data_out(data_out), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY));
+	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .addr(curr_addr), .data_out(data_out), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY), .score(score), .fruits(fruits));
+	
+	game_logic gl(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .keycode(keycode), .pX(ballxsig), .pY(ballysig), .pSize(ballsizesig), .gSize(redghostsizesig), .rgX(redghostxsig), .rgY(redghostysig), .win(win), .lose(lose), .fruits(fruits), .score(score));
 	
 	ball b(.Reset(Reset_h), .frame_clk(VGA_VS) , .keycode(keycode), .mapTL(mapTL), .mapTR(mapTR), .mapBL(mapBL), .mapBR(mapBR), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
 

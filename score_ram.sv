@@ -1,4 +1,5 @@
 module score_ram(
+		input [9:0] score,
 		input [7:0] data_In,
 		input [7:0] write_address, read_address,
 		input we, Clk,
@@ -8,6 +9,11 @@ module score_ram(
 
 	// mem has width of 3 bits and a total of 400 addresses
 	logic [7:0] mem [159:0];
+	
+	logic [9:0] temp_score;
+	logic [3:0] hundreds;
+	logic [3:0] tens;
+	logic [3:0] ones;
 
 	initial
 	begin
@@ -18,11 +24,11 @@ module score_ram(
 		mem[4] = 8'h65; // e
 		mem[5] = 8'h3a; // :
 		mem[6] = 8'h00;
-		// score number variables (default 0000)
+		// score number variables (default 000)
 		mem[7] = 8'h30;
 		mem[8] = 8'h30;
 		mem[9] = 8'h30;
-		mem[10] = 8'h30;
+		mem[10] = 8'h00;
 		for(int i = 11; i < 25; i+= 1)
 			begin
 				mem[i] = 8'h00;
@@ -42,11 +48,27 @@ module score_ram(
 				mem[j] = 8'h00;
 			end
 	end
+	
+	// set new score
+	always_comb
+		begin
+			temp_score = score;
+			ones = temp_score % 10;
+			temp_score = temp_score / 10;
+			tens = temp_score % 10;
+			temp_score = temp_score / 10;
+			hundreds = temp_score % 10;
+		end
 
 	always_ff @ (posedge Clk) begin
 		if (we)
 			mem[write_address] <= data_In;
 		data_Out<= mem[read_address];
+		
+		// display score
+		mem[7] <= 8'h30 + hundreds;
+		mem[8] <= 8'h30 + tens;
+		mem[9] <= 8'h30 + ones;
 	end
 
 endmodule

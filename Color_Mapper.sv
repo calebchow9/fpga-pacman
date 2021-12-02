@@ -14,6 +14,8 @@
 
 module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 							  input 			[9:0] redghostX, redghostY, redghost_size,
+							  input			[9:0] score,
+							  input			[3:0] fruits,
 								input logic blank, Clk, VGA_Clk,
 								input logic [3:0] l_dirX, l_dirY,
 								input logic [23:0] data_out,
@@ -58,7 +60,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 
 	 
 	 // modules here
-	 score_ram sr(.data_In(), .write_address(), .read_address(font_read_addr), .we(1'b0), .Clk(Clk), .data_Out(font_data_out));
+	 score_ram sr(.score(score), .data_In(), .write_address(), .read_address(font_read_addr), .we(1'b0), .Clk(Clk), .data_Out(font_data_out));
 	 map_mask mm(.x(DrawX), .y(DrawY), .mask(map_mask));
 	 font_rom fr(.addr(sprite_addr), .data(sprite_data));
 	 pacman_ram pr(.data_In(), .write_address(), .read_address(pacman_addr), .we(1'b0), .Clk(Clk), .data_Out(pacman_color));
@@ -85,8 +87,11 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 // draw items
 	 always_comb
 	 begin
-		if(DrawX >= 12 && DrawX <= 37 && DrawY >= 10 && DrawY <= 35)
-			apple_mask = 1'b1;
+		if(fruits[0] == 0)
+			begin
+				if(DrawX >= 12 && DrawX <= 37 && DrawY >= 10 && DrawY <= 35)
+					apple_mask = 1'b1;
+			end
 		else
 			apple_mask = 1'b0;
 
