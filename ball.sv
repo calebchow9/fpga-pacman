@@ -14,8 +14,9 @@
 
 
 module  ball ( input Reset, frame_clk,
+					input logic restart,
 					input [7:0] keycode,
-					input mapTL, mapTR, mapBL, mapBR,
+					input [4:0] mapL, mapR, mapB, mapT,
                output [9:0]  BallX, BallY, BallS,
 					output [3:0] last_dirX, last_dirY
 );
@@ -44,11 +45,18 @@ module  ball ( input Reset, frame_clk,
     begin: Move_Ball
         if (Reset)  // Asynchronous Reset
 				begin 
-					Ball_Y_Motion <= 10'd0; //Ball_Y_Step;
-						Ball_X_Motion <= 10'd0; //Ball_X_Step;
-						Ball_Y_Pos <= Ball_Y_Center;
-						Ball_X_Pos <= Ball_X_Center;
-				end  
+					Ball_Y_Motion <= 10'd0; //reset PacMan movement
+					Ball_X_Motion <= 10'd0; 
+					Ball_Y_Pos <= Ball_Y_Center; // reset PacMan back to center
+					Ball_X_Pos <= Ball_X_Center;
+				end
+		  else if (restart == 1'b1)
+				begin 
+					Ball_Y_Motion <= 10'd0; //reset PacMan movement
+					Ball_X_Motion <= 10'd0; 
+					Ball_Y_Pos <= Ball_Y_Center; // reset PacMan back to center
+					Ball_X_Pos <= Ball_X_Center;
+				end
         else 
 				begin
 					// default, if no keys pressed then PacMan doesn't move
@@ -67,7 +75,7 @@ module  ball ( input Reset, frame_clk,
 										end
 									else
 										begin
-											if(mapTL == 0 && mapBL == 0)
+											if(mapL == 0)
 												Ball_X_Motion <= -1;
 											else
 												Ball_X_Motion <= 0;
@@ -84,7 +92,7 @@ module  ball ( input Reset, frame_clk,
 										end
 									else
 										begin
-											if(mapTR == 0 && mapBR == 0)
+											if(mapR == 0)
 												Ball_X_Motion <= 1;
 											else
 												Ball_X_Motion <= 0;
@@ -101,7 +109,7 @@ module  ball ( input Reset, frame_clk,
 										end
 									else
 										begin
-											if(mapBL == 0 && mapBR == 0)
+											if(mapB == 0)
 												Ball_Y_Motion <= 1;
 											else
 												Ball_Y_Motion <= 0;
@@ -116,7 +124,7 @@ module  ball ( input Reset, frame_clk,
 										Ball_Y_Motion <= 0;
 									else
 										begin
-											if(mapTL == 0 && mapTR == 0)
+											if(mapT == 0)
 												Ball_Y_Motion <= -1;
 											else
 												Ball_Y_Motion <= 0;

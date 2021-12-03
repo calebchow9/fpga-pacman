@@ -18,17 +18,20 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 							  input			[3:0] fruits,
 								input logic blank, Clk, VGA_Clk,
 								input logic [3:0] l_dirX, l_dirY,
-								input logic [23:0] data_out,
-							  output logic	[18:0] addr,
                        output logic [7:0]  Red, Green, Blue);
     
     logic ball_on;
 	  
     int DistX, DistY, Size;
+	 int RedX, RedY, RedSize;
 
 	 assign DistX = DrawX - BallX;
     assign DistY = DrawY - BallY;
     assign Size = Ball_size;
+	 
+	 assign RedX = DrawX - redghostX;
+	 assign RedY = DrawY - redghostY;
+	 assign RedSize = redghost_size;
 
 	 // MAP SIZE: x: 405, y: 448
 	 logic map_mask;
@@ -57,6 +60,8 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 logic [23:0] redghost_color;
 	 logic [8:0] redghost_addr;
 	 logic redghost_mask;
+	 
+	 logic dots_mask;
 
 	 
 	 // modules here
@@ -77,12 +82,11 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	  
 	  always_comb
 	  begin:Ghost_outline
-		if(DrawX-redghostX <= redghost_size && DrawX-redghostX >= -1*redghost_size // [-10, 10]
-			&& DrawY-redghostY <= redghost_size && DrawY-redghostY >= -1*redghost_size)
-				redghost_mask = 1'b1;
+		if((RedX*RedX + RedY*RedY) <= (RedSize * RedSize))
+			redghost_mask = 1'b1;
 		else
 			redghost_mask = 1'b0;
-	  end
+		end
 
 	 // draw items
 	 always_comb
@@ -91,11 +95,27 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 			begin
 				if(DrawX >= 12 && DrawX <= 37 && DrawY >= 10 && DrawY <= 35)
 					apple_mask = 1'b1;
+				else
+					apple_mask = 1'b0;
 			end
 		else
 			apple_mask = 1'b0;
 
 	 end
+	 
+	 // draw dots
+	always_comb
+	begin
+		if(DrawY >= 23 && DrawY <= 26)
+			begin
+				if(DrawX % 25 == 0 || DrawX % 25 == 1 || DrawX % 25 == 2)
+					dots_mask = 1'b1;
+				else
+					dots_mask = 1'b0;
+			end
+		else
+			dots_mask = 1'b0;
+	end
 	 
 	always_comb
 	begin: Text_outline
@@ -166,7 +186,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 									else
 									// up mouth
 										begin
-										pacman_addr <= (DrawY-(BallY-Ball_size) - 1) * 26 + DrawX-(BallX-Ball_size) + (2*676);
+										pacman_addr <= (DrawY-(BallY-Ball_size) + 1) * 26 + DrawX-(BallX-Ball_size) + (2*676);
 										end
 								end
 							
@@ -189,6 +209,12 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 							Red <= items_color[23:16];
 							Green <= items_color[15:8];
 							Blue <= items_color[7:0];
+						end
+					else if ((dots_mask == 1'b1))
+						begin
+							Red <= 8'hff;
+							Green <= 8'hff;
+							Blue <= 8'h00;
 						end
 					else if ((text_mask == 1'b1))
 						begin

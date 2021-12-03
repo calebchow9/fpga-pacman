@@ -274,4 +274,8 @@ set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME testbench -section_id tes
 set_global_assignment -name EDA_TEST_BENCH_FILE testbench.sv -section_id testbench
 set_global_assignment -name SYSTEMVERILOG_FILE items_ram.sv
 set_global_assignment -name SYSTEMVERILOG_FILE game_logic.sv
+set_global_assignment -name SYSTEMVERILOG_FILE score_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE output_files/fruits_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE dots.sv
+set_global_assignment -name SYSTEMVERILOG_FILE dot_reg.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

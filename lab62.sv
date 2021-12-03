@@ -161,27 +161,42 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		
 	 );
 	 
-	 logic [18:0] curr_addr;
-	 logic [7:0] data_out;
+	 // collision variables
 	 logic [3:0] l_dirX, l_dirY;
-	 logic mapTL, mapTR, mapBL, mapBR;
-	 logic win, lose;
+	 logic [4:0] mapL, mapR, mapB, mapT;
+	 
+	 // game state variables
+	 logic win, lose, restart, lifeDown;
 	 logic [3:0] fruits;
 	 logic [9:0] score;
+	 
+	 logic Load_score;
+	 logic Load_fruits;
+	 logic [9:0] score_from_reg, score_to_reg;
+	 logic [3:0] fruits_from_reg, fruits_to_reg;
+	 
+	 // dots
+	 logic [31:0] dots_left;
 
 
-//instantiate a vga_controller, ball, and color_mapper here with the ports.
+	// initialize modules
 
 	vga_controller vga(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .hs(VGA_HS), .vs(VGA_VS), .pixel_clk(VGA_Clk), .blank(blank), .sync(sync), .DrawX(drawxsig), .DrawY(drawysig));
 	
-	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .addr(curr_addr), .data_out(data_out), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY), .score(score), .fruits(fruits));
+	dots d(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .pX(), .pY(), .dX(), .dY(), .dots_left(dots_left));
 	
-	game_logic gl(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .keycode(keycode), .pX(ballxsig), .pY(ballysig), .pSize(ballsizesig), .gSize(redghostsizesig), .rgX(redghostxsig), .rgY(redghostysig), .win(win), .lose(lose), .fruits(fruits), .score(score));
+	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY), .score(score_from_reg), .fruits(fruits_from_reg));
 	
-	ball b(.Reset(Reset_h), .frame_clk(VGA_VS) , .keycode(keycode), .mapTL(mapTL), .mapTR(mapTR), .mapBL(mapBL), .mapBR(mapBR), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
+	game_logic gl(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .keycode(keycode), .pX(ballxsig), .pY(ballysig), .pSize(ballsizesig), .gSize(redghostsizesig), .rgX(redghostxsig), .rgY(redghostysig), .win(win), .lose(lose), .fruits_to_reg(fruits_to_reg), .fruits_from_reg(fruits_from_reg), .Load_F(Load_fruits), .score_to_reg(score_to_reg), .Load_S(Load_score), .score_from_reg(score_from_reg));
+	
+	ball b(.Reset(Reset_h), .restart(restart), .frame_clk(VGA_VS) , .keycode(keycode), .mapL(mapL), .mapR(mapR), .mapB(mapB), .mapT(mapT), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
 
 	redghost rg(.Reset(Reset_h), .frame_clk(VGA_VS) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig));
 	
-	map_mask mmTop(.x(ballxsig), .y(ballysig), .maskTL(mapTL), .maskTR(mapTR), .maskBL(mapBL), .maskBR(mapBR));
+	map_mask mmTop(.x(ballxsig), .y(ballysig), .maskL(mapL), .maskR(mapR), .maskT(mapT), .maskB(mapB));
+	
+	// regs to store current score and fruits left
+	score_reg sr(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .Load(Load_score), .Data_in(score_to_reg), .Data_out(score_from_reg));
+	fruits_reg fr(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .Load(Load_fruits), .Data_in(fruits_to_reg), .Data_out(fruits_from_reg));
 	
 endmodule

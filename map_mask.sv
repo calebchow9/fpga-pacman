@@ -2,7 +2,8 @@ module map_mask(
 	input [9:0] x,
 	input [9:0] y,
 	
-	output mask, maskTL, maskTR, maskBL, maskBR
+	output mask, 
+	output [4:0] maskL, maskR, maskT, maskB
 );
 	logic [404:0] line;
 
@@ -459,21 +460,25 @@ module map_mask(
 405'b 000000011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110000000};
 
 logic [9:0] offL, offR, offT, offB;
-logic [404:0] lineT, lineB;
+logic [404:0] lineT, lineB, lineplus, lineminus, lineminus1, lineplus1;
 
-assign offL = x-10;
-assign offR = x+10;
-assign offT = y-10;
-assign offB = y+10;
+assign offL = x-14;
+assign offR = x+14;
+assign offT = y-14;
+assign offB = y+14;
 
 assign line = bit_map[y];
+assign lineminus = bit_map[y-8];
+assign lineminus1 = bit_map[y-12];
+assign lineplus = bit_map[y+8];
+assign lineplus1 = bit_map[y+12];
 assign lineT = bit_map[offT];
 assign lineB = bit_map[offB];
 
 assign mask = line[x];
-assign maskTL = lineT[offL];
-assign maskTR = lineT[offR];
-assign maskBL = lineB[offL];
-assign maskBR = lineB[offR];
+assign maskL = {lineminus1[offL], lineminus[offL], line[offL], lineplus[offL], lineplus1[offL]};
+assign maskR = {lineminus1[offR], lineminus[offR], line[offR], lineplus[offR], lineplus1[offR]};
+assign maskT = {lineT[x-11], lineT[x-8], lineT[x], lineT[x+8], lineT[x+11]};
+assign maskB = {lineB[x-11], lineB[x-8], lineB[x], lineB[x+8], lineB[x+11]};
 
 endmodule

@@ -11,9 +11,9 @@ module score_ram(
 	logic [7:0] mem [159:0];
 	
 	logic [9:0] temp_score;
-	logic [3:0] hundreds;
-	logic [3:0] tens;
-	logic [3:0] ones;
+	logic [7:0] hundreds;
+	logic [7:0] tens;
+	logic [7:0] ones;
 
 	initial
 	begin
@@ -53,11 +53,11 @@ module score_ram(
 	always_comb
 		begin
 			temp_score = score;
-			ones = temp_score % 10;
-			temp_score = temp_score / 10;
-			tens = temp_score % 10;
-			temp_score = temp_score / 10;
-			hundreds = temp_score % 10;
+			ones <= temp_score % 10;
+			temp_score /= 10;
+			tens <= temp_score % 10;
+			temp_score /= 10;
+			hundreds <= temp_score % 10;
 		end
 
 	always_ff @ (posedge Clk) begin
