@@ -36,17 +36,17 @@ module dots(input Clk, Reset,
 		10'd90,    
 		10'd175,
 		10'd220,
-		10'd302,
+		10'd307,
 		// first row
 		10'd18,
-		10'd85,
-		10'd302,
-		10'd375,
+		10'd90,
+		10'd307,
+		10'd379,
 		// second row
 		10'd18,
 		10'd135,
 		10'd258,
-		10'd375,
+		10'd379,
 		// third row
 		10'd90,
 		10'd307,
@@ -59,13 +59,13 @@ module dots(input Clk, Reset,
 		// third last row
 		10'd18,
 		10'd135,
-		10'd292,
-		10'd375,
+		10'd262,
+		10'd379,
 		// second last row
-		10'd68,
+		10'd18,
 		10'd135,
 		10'd258,
-		10'd376,
+		10'd379,
 		// last row
 		10'd85,    
 		10'd175,
@@ -108,10 +108,10 @@ module dots(input Clk, Reset,
 		10'd380,
 		10'd380,
 		// last row
-		10'd421,
-		10'd421,
-		10'd421,
-		10'd421
+		10'd423,
+		10'd423,
+		10'd423,
+		10'd423
 	};
 
 	dot d0(.Clk(Clk), .Reset(Reset), .x(dX[0]), .y(dY[0]), .pX(pX), .pY(pY), .eaten(dots_left[0]));

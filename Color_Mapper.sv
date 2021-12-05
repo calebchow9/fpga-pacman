@@ -108,7 +108,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 			
 		if(fruits[1] == 0)
 			begin
-				if(DrawX >= 371 && DrawX <= 396 && DrawY >= 10 && DrawY <= 35)
+				if(DrawX >= 372 && DrawX <= 396 && DrawY >= 10 && DrawY <= 34)
 					peas_mask = 1'b1;
 				else
 					peas_mask = 1'b0;
@@ -145,7 +145,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 		for(int dots_i = 0; dots_i < 32; dots_i++)
 			begin
 				if(DrawX <= dX[dots_i] + 5 && DrawX >= dX[dots_i] && 
-					DrawY <= dY[dots_i] + 5 && DrawY >= dY[dots_i])
+					DrawY <= dY[dots_i] + 5 && DrawY >= dY[dots_i] && dots_left[dots_i] == 1'b0)
 					begin
 						if((DrawX == dX[dots_i] && DrawY == dY[dots_i]) || 
 						   (DrawX == dX[dots_i] + 5 && DrawY == dY[dots_i]) || 
