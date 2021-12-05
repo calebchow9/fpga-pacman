@@ -1,4 +1,4 @@
-module dot_reg (input Clk, Reset, Load,
+module dots_left_reg (input Clk, Reset, Load,
 					input [31:0] Data_in,
 					output logic [31:0] Data_out
 );

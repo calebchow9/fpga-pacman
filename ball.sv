@@ -14,7 +14,7 @@
 
 
 module  ball ( input Reset, frame_clk,
-					input logic restart,
+					input logic restart, lifeDown,
 					input [7:0] keycode,
 					input [4:0] mapL, mapR, mapB, mapT,
                output [9:0]  BallX, BallY, BallS,
@@ -50,7 +50,7 @@ module  ball ( input Reset, frame_clk,
 					Ball_Y_Pos <= Ball_Y_Center; // reset PacMan back to center
 					Ball_X_Pos <= Ball_X_Center;
 				end
-		  else if (restart == 1'b1)
+		  else if (restart == 1'b1 || lifeDown == 1'b1)
 				begin 
 					Ball_Y_Motion <= 10'd0; //reset PacMan movement
 					Ball_X_Motion <= 10'd0; 

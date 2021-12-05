@@ -1,5 +1,6 @@
 module score_ram(
 		input [9:0] score,
+		input [7:0] lives,
 		input [7:0] data_In,
 		input [7:0] write_address, read_address,
 		input we, Clk,
@@ -40,8 +41,8 @@ module score_ram(
 		mem[29] = 8'h73; // s
 		mem[30] = 8'h3a; // :
 		mem[31] = 8'h00;
-		// lives number variable (default 2)
-		mem[32] = 8'h32;
+		// lives number variable (default 3)
+		mem[32] = 8'h33;
 		
 		for(int j = 33; j < 160; j+= 1)
 			begin
@@ -69,6 +70,9 @@ module score_ram(
 		mem[7] <= 8'h30 + hundreds;
 		mem[8] <= 8'h30 + tens;
 		mem[9] <= 8'h30 + ones;
+		
+		// display lives
+		mem[32] <= 8'h33 - lives;
 	end
 
 endmodule

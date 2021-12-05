@@ -97,16 +97,16 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	assign ARDUINO_IO[6] = 1'b1;
 	
 	//HEX drivers to convert numbers to HEX output
-	HexDriver hex_driver4 (l_dirY, HEX4[6:0]);
+	HexDriver hex_driver4 (lives_from_reg[3:0], HEX4[6:0]);
 	assign HEX4[7] = 1'b1;
 	
-	HexDriver hex_driver3 (l_dirX, HEX3[6:0]);
+	HexDriver hex_driver3 (score_from_reg[3:0], HEX3[6:0]);
 	assign HEX3[7] = 1'b1;
 	
-	HexDriver hex_driver1 (l_dirY, HEX1[6:0]);
+	HexDriver hex_driver1 (fruits_from_reg[3:0], HEX1[6:0]);
 	assign HEX1[7] = 1'b1;
 	
-	HexDriver hex_driver0 (l_dirX, HEX0[6:0]);
+	HexDriver hex_driver0 (dots_left[3:0], HEX0[6:0]);
 	assign HEX0[7] = 1'b1;
 	
 	//fill in the hundreds digit as well as the negative sign
@@ -172,8 +172,10 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	 
 	 logic Load_score;
 	 logic Load_fruits;
+	 logic Load_lives;
 	 logic [9:0] score_from_reg, score_to_reg;
 	 logic [3:0] fruits_from_reg, fruits_to_reg;
+	 logic [7:0] lives_from_reg, lives_to_reg;
 	 
 	 // dots
 	 logic [31:0] dots_left;
@@ -183,13 +185,11 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 
 	vga_controller vga(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .hs(VGA_HS), .vs(VGA_VS), .pixel_clk(VGA_Clk), .blank(blank), .sync(sync), .DrawX(drawxsig), .DrawY(drawysig));
 	
-	dots d(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .pX(), .pY(), .dX(), .dY(), .dots_left(dots_left));
+	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY), .score(score_from_reg), .fruits(fruits_from_reg), .lives(lives_from_reg));
 	
-	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY), .score(score_from_reg), .fruits(fruits_from_reg));
+	game_logic gl(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .keycode(keycode), .pX(ballxsig), .pY(ballysig), .pSize(ballsizesig), .gSize(redghostsizesig), .rgX(10'd200), .rgY(10'd200), .ogX(10'd200), .ogY(10'd200), .bgX(10'd200), .bgY(10'd200), .win(win), .lose(lose), .fruits_to_reg(fruits_to_reg), .fruits_from_reg(fruits_from_reg), .Load_F(Load_fruits), .score_to_reg(score_to_reg), .Load_S(Load_score), .score_from_reg(score_from_reg), .lives_from_reg(lives_from_reg), .Load_L(Load_lives), .lives_to_reg(lives_to_reg));
 	
-	game_logic gl(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .keycode(keycode), .pX(ballxsig), .pY(ballysig), .pSize(ballsizesig), .gSize(redghostsizesig), .rgX(redghostxsig), .rgY(redghostysig), .win(win), .lose(lose), .fruits_to_reg(fruits_to_reg), .fruits_from_reg(fruits_from_reg), .Load_F(Load_fruits), .score_to_reg(score_to_reg), .Load_S(Load_score), .score_from_reg(score_from_reg));
-	
-	ball b(.Reset(Reset_h), .restart(restart), .frame_clk(VGA_VS) , .keycode(keycode), .mapL(mapL), .mapR(mapR), .mapB(mapB), .mapT(mapT), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
+	ball b(.Reset(Reset_h), .restart(restart), .lifeDown(lifeDown), .frame_clk(VGA_VS) , .keycode(keycode), .mapL(mapL), .mapR(mapR), .mapB(mapB), .mapT(mapT), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
 
 	redghost rg(.Reset(Reset_h), .frame_clk(VGA_VS) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig));
 	
@@ -198,5 +198,6 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	// regs to store current score and fruits left
 	score_reg sr(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .Load(Load_score), .Data_in(score_to_reg), .Data_out(score_from_reg));
 	fruits_reg fr(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .Load(Load_fruits), .Data_in(fruits_to_reg), .Data_out(fruits_from_reg));
+	lives_reg lr(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .Load(Load_lives), .Data_in(lives_to_reg), .Data_out(lives_from_reg));
 	
 endmodule

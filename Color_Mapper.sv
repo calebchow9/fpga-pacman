@@ -16,9 +16,11 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 							  input 			[9:0] redghostX, redghostY, redghost_size,
 							  input			[9:0] score,
 							  input			[3:0] fruits,
+							  input			[7:0] lives,
 								input logic blank, Clk, VGA_Clk,
 								input logic [3:0] l_dirX, l_dirY,
-                       output logic [7:0]  Red, Green, Blue);
+                       output logic [7:0]  Red, Green, Blue,
+							  output logic [31:0] dots_left);
     
     logic ball_on;
 	  
@@ -61,16 +63,19 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 logic [8:0] redghost_addr;
 	 logic redghost_mask;
 	 
+	 logic [9:0] dX [0:31];
+	 logic [9:0] dY [0:31];
 	 logic dots_mask;
 
 	 
 	 // modules here
-	 score_ram sr(.score(score), .data_In(), .write_address(), .read_address(font_read_addr), .we(1'b0), .Clk(Clk), .data_Out(font_data_out));
+	 score_ram sr(.score(score), .lives(lives), .data_In(), .write_address(), .read_address(font_read_addr), .we(1'b0), .Clk(Clk), .data_Out(font_data_out));
 	 map_mask mm(.x(DrawX), .y(DrawY), .mask(map_mask));
 	 font_rom fr(.addr(sprite_addr), .data(sprite_data));
 	 pacman_ram pr(.data_In(), .write_address(), .read_address(pacman_addr), .we(1'b0), .Clk(Clk), .data_Out(pacman_color));
 	 items_ram ir(.data_In(), .write_address(), .read_address(items_addr), .we(1'b0), .Clk(Clk), .data_Out(items_color));
 	 redghost_ram rr(.data_In(), .write_address(), .read_address(redghost_addr), .we(1'b0), .Clk(Clk), .data_Out(redghost_color));
+	 dots d(.Clk(Clk), .Reset(1'b0), .pX(BallX), .pY(BallY), .dX(dX), .dY(dY), .dots_left(dots_left));
 	 
     always_comb
     begin:PacMan_outline
@@ -93,28 +98,64 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 begin
 		if(fruits[0] == 0)
 			begin
-				if(DrawX >= 12 && DrawX <= 37 && DrawY >= 10 && DrawY <= 35)
+				if(DrawX >= 12 && DrawX <= 38 && DrawY >= 10 && DrawY <= 35)
 					apple_mask = 1'b1;
 				else
 					apple_mask = 1'b0;
 			end
 		else
 			apple_mask = 1'b0;
-
+			
+		if(fruits[1] == 0)
+			begin
+				if(DrawX >= 371 && DrawX <= 396 && DrawY >= 10 && DrawY <= 35)
+					peas_mask = 1'b1;
+				else
+					peas_mask = 1'b0;
+			end
+		else
+			peas_mask = 1'b0;
+		
+		if(fruits[2] == 0)
+			begin
+				if(DrawX >= 12 && DrawX <= 38 && DrawY >= 414 && DrawY <= 439)
+					grapes_mask = 1'b1;
+				else
+					grapes_mask = 1'b0;
+			end
+		else
+			grapes_mask = 1'b0;
+			
+		if(fruits[3] == 0)
+			begin
+				if(DrawX >= 370 && DrawX <= 396 && DrawY >= 413 && DrawY <= 439)
+					drink_mask = 1'b1;
+				else
+					drink_mask = 1'b0;
+			end
+		else
+			drink_mask = 1'b0;
+		
 	 end
 	 
 	 // draw dots
 	always_comb
 	begin
-		if(DrawY >= 23 && DrawY <= 26)
+		dots_mask = 1'b0;
+		for(int dots_i = 0; dots_i < 32; dots_i++)
 			begin
-				if(DrawX % 25 == 0 || DrawX % 25 == 1 || DrawX % 25 == 2)
-					dots_mask = 1'b1;
-				else
-					dots_mask = 1'b0;
+				if(DrawX <= dX[dots_i] + 5 && DrawX >= dX[dots_i] && 
+					DrawY <= dY[dots_i] + 5 && DrawY >= dY[dots_i])
+					begin
+						if((DrawX == dX[dots_i] && DrawY == dY[dots_i]) || 
+						   (DrawX == dX[dots_i] + 5 && DrawY == dY[dots_i]) || 
+							(DrawX == dX[dots_i] && DrawY == dY[dots_i] + 5) ||
+							(DrawX == dX[dots_i] + 5 && DrawY == dY[dots_i] + 5))
+							dots_mask = 1'b0;
+						else
+							dots_mask = 1'b1;					
+					end
 			end
-		else
-			dots_mask = 1'b0;
 	end
 	 
 	always_comb
@@ -186,7 +227,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 									else
 									// up mouth
 										begin
-										pacman_addr <= (DrawY-(BallY-Ball_size) + 1) * 26 + DrawX-(BallX-Ball_size) + (2*676);
+										pacman_addr <= (DrawY-(BallY-Ball_size) - 1) * 26 + DrawX-(BallX-Ball_size) + (2*676);
 										end
 								end
 							
@@ -204,7 +245,31 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 						end
 					else if ((apple_mask == 1'b1))
 						begin
-							items_addr <= (DrawY-10) * 26 + (DrawX-12);
+							items_addr <= (DrawY-10) * 26 + (DrawX-12) - 1;
+							
+							Red <= items_color[23:16];
+							Green <= items_color[15:8];
+							Blue <= items_color[7:0];
+						end
+					else if ((peas_mask == 1'b1))
+						begin
+							items_addr <= (DrawY-10) * 26 + (DrawX-370) + 676;
+							
+							Red <= items_color[23:16];
+							Green <= items_color[15:8];
+							Blue <= items_color[7:0];
+						end
+					else if ((grapes_mask == 1'b1))
+						begin
+							items_addr <= (DrawY-413-4) * 26 + (DrawX-12) + (2*676);
+							
+							Red <= items_color[23:16];
+							Green <= items_color[15:8];
+							Blue <= items_color[7:0];
+						end
+					else if ((drink_mask == 1'b1))
+						begin
+							items_addr <= (DrawY-413-4) * 26 + (DrawX-370) + (3*676);
 							
 							Red <= items_color[23:16];
 							Green <= items_color[15:8];
