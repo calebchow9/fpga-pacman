@@ -1,11 +1,11 @@
 module map_mask(
-	input [9:0] x,
-	input [9:0] y,
+	input [9:0] x, y, rgX, rgY,
 	
 	output mask, 
-	output [4:0] maskL, maskR, maskT, maskB
+	output [4:0] maskL, maskR, maskT, maskB, RGmaskL, RGmaskR, RGmaskT, RGmaskB
 );
 	logic [404:0] line;
+	logic [404:0] RGline;
 
 	// maze size 405 (width) x 448 (height)
 	// ROM definition
@@ -480,5 +480,29 @@ assign maskL = {lineminus1[offL], lineminus[offL], line[offL], lineplus[offL], l
 assign maskR = {lineminus1[offR], lineminus[offR], line[offR], lineplus[offR], lineplus1[offR]};
 assign maskT = {lineT[x-11], lineT[x-8], lineT[x], lineT[x+8], lineT[x+11]};
 assign maskB = {lineB[x-11], lineB[x-8], lineB[x], lineB[x+8], lineB[x+11]};
+
+// red ghost collisions
+logic [9:0] RGoffL, RGoffR, RGoffT, RGoffB;
+logic [404:0] RGlineT, RGlineB, RGlineplus, RGlineminus, RGlineminus1, RGlineplus1;
+
+assign RGoffL = x-14;
+assign RGoffR = x+14;
+assign RGoffT = y-14;
+assign RGoffB = y+14;
+
+assign RGline = bit_map[y];
+assign RGlineminus = bit_map[y-8];
+assign RGlineminus1 = bit_map[y-12];
+assign RGlineplus = bit_map[y+8];
+assign RGlineplus1 = bit_map[y+12];
+assign RGlineT = bit_map[offT];
+assign RGlineB = bit_map[offB];
+
+assign RGmaskL = {RGlineminus1[offL], RGlineminus[offL], RGline[offL], RGlineplus[offL], RGlineplus1[offL]};
+assign RGmaskR = {RGlineminus1[offR], RGlineminus[offR], RGline[offR], RGlineplus[offR], RGlineplus1[offR]};
+assign RGmaskT = {RGlineT[x-11], RGlineT[x-8], RGlineT[x], RGlineT[x+8], RGlineT[x+11]};
+assign RGmaskB = {RGlineB[x-11], RGlineB[x-8], RGlineB[x], RGlineB[x+8], RGlineB[x+11]};
+
+
 
 endmodule

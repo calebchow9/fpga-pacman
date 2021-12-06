@@ -97,10 +97,10 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	assign ARDUINO_IO[6] = 1'b1;
 	
 	//HEX drivers to convert numbers to HEX output
-	HexDriver hex_driver4 (lives_from_reg[3:0], HEX4[6:0]);
+	HexDriver hex_driver4 (gkeycode[7:4], HEX4[6:0]);
 	assign HEX4[7] = 1'b1;
 	
-	HexDriver hex_driver3 (score_from_reg[3:0], HEX3[6:0]);
+	HexDriver hex_driver3 (gkeycode[3:0], HEX3[6:0]);
 	assign HEX3[7] = 1'b1;
 	
 	HexDriver hex_driver1 (ballxsig[3:0], HEX1[6:0]);
@@ -164,6 +164,8 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	 // collision variables
 	 logic [3:0] l_dirX, l_dirY;
 	 logic [4:0] mapL, mapR, mapB, mapT;
+	 logic [4:0] RGmapL, RGmapR, RGmapB, RGmapT;
+	 logic [7:0] gkeycode;
 	 
 	 // game state variables
 	 logic win, lose, restart, lifeDown;
@@ -191,9 +193,9 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	
 	ball b(.Reset(Reset_h), .restart(restart), .lifeDown(lifeDown), .frame_clk(VGA_VS) , .keycode(keycode), .mapL(mapL), .mapR(mapR), .mapB(mapB), .mapT(mapT), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
 
-	redghost rg(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .frame_clk(VGA_VS) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig), .lifeDown(lifeDown));
+	redghost rg(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .frame_clk(VGA_VS) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig), .lifeDown(lifeDown), .keycode(gkeycode), .mapL(RGmaskL), .mapR(RGmaskR), .mapT(RGmaskT), .mapB(RGmaskB));
 	
-	map_mask mmTop(.x(ballxsig), .y(ballysig), .maskL(mapL), .maskR(mapR), .maskT(mapT), .maskB(mapB));
+	map_mask mmTop(.x(ballxsig), .y(ballysig), .maskL(mapL), .maskR(mapR), .maskT(mapT), .maskB(mapB), .RGmaskL(RGmaskL), .RGmaskR(RGmaskR), .RGmaskT(RGmaskT), .RGmaskB(RGmaskB));
 	
 	// regs to store current score and fruits left
 	score_reg sr(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .Load(Load_score), .Data_in(score_to_reg), .Data_out(score_from_reg));

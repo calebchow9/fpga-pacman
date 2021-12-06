@@ -1,4 +1,4 @@
-module dot(input [9:0] x, y, pX, pY, pS
+module dot(input [9:0] x, y, pX, pY, pS,
 			  input Clk, Reset,
 
 			  output logic eaten
@@ -12,7 +12,7 @@ module dot(input [9:0] x, y, pX, pY, pS
 	begin
 		Load_D = 1'b0;
 		data_to_load = 1'b0;
-		if((x == pX || x == pX+1 || x == pX-1) && (y == pY || y == pY-1 || y == pY+1))
+		if((x == pX + pS || x == pX - pS || x == pX) && (y == pY || y == pY - pS || y == pY + pS))
 			begin
 				//PacMan hit dot -> remove
 				data_to_load <= 1'b1;
@@ -22,7 +22,7 @@ module dot(input [9:0] x, y, pX, pY, pS
 endmodule
 
 module dots(input Clk, Reset,
-				input [9:0] pX, pY,
+				input [9:0] pX, pY, pS,
 				
 				output logic [9:0] dX [0:31],
 				output logic [9:0] dY [0:31],
@@ -146,7 +146,7 @@ module dots(input Clk, Reset,
 	dot d30(.Clk(Clk), .Reset(Reset), .x(dX[30]), .y(dY[30]), .pX(pX), .pY(pY), .pS(pS), .eaten(data_to_dlr[30]));
 	dot d31(.Clk(Clk), .Reset(Reset), .x(dX[31]), .y(dY[31]), .pX(pX), .pY(pY), .pS(pS), .eaten(data_to_dlr[31]));
 	
-	dots_left_reg dlr(.Clk(Clk), .Reset(Reset), .Load(1'b1), .Data_in(data_to_load), .Data_out(dots_left));
+	dots_left_reg dlr(.Clk(Clk), .Reset(Reset), .Load(1'b1), .Data_in(data_to_dlr), .Data_out(dots_left));
 
 endmodule
 

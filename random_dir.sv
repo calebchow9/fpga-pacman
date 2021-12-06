@@ -119,10 +119,10 @@ module random_dir(input Clk, Reset,
 		Load_DR = 1'b0;
 		data_to_dr = 8'b0;
 		
-		if(data_from_counter % 3 == 0)
+		if(data_from_counter % 1 == 0)
 			begin
 				// get random direction
-				case (dirs[data_from_counter / 3])
+				case (dirs[data_from_counter])
 					2'b00: data_to_dr = 8'h04; // left
 					2'b01: data_to_dr = 8'h07; // right
 					2'b10: data_to_dr = 8'h16; // down

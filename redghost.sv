@@ -14,11 +14,12 @@
 
 
 module  redghost ( input Clk, Reset, frame_clk, lifeDown,
-               output [9:0]  redghostX, redghostY, redghostS
+						 input [4:0] mapL, mapR, mapB, mapT,
+               output [9:0]  redghostX, redghostY, redghostS,
+					output logic [7:0] keycode
 );
     
     logic [9:0] redghost_X_Pos, redghost_X_Motion, redghost_Y_Pos, redghost_Y_Motion, redghost_Size;
-	 logic [7:0] keycode;
 	 
     parameter [9:0] redghost_X_Center=144;  // Center position on the X axis
     parameter [9:0] redghost_Y_Center=165;  // Center position on the Y axis
@@ -57,10 +58,14 @@ module  redghost ( input Clk, Reset, frame_clk, lifeDown,
 									if(redghost_X_Pos - redghost_Size <= redghost_X_Min)
 										begin
 											redghost_X_Motion <= 0;
-											redghost_Y_Motion <= 0;
 										end
 									else
-										redghost_X_Motion <= -1;
+										begin
+											if(mapL == 0)
+												redghost_X_Motion <= -1;
+											else
+												redghost_X_Motion <= 0;
+										end
 										
 								  end
 						// RIGHT
@@ -71,10 +76,14 @@ module  redghost ( input Clk, Reset, frame_clk, lifeDown,
 									if(redghost_X_Pos + redghost_Size >= redghost_X_Max)
 										begin
 											redghost_X_Motion <= 0;
-											redghost_Y_Motion <= 0;
 										end
 									else
-										redghost_X_Motion <= 1;
+										begin
+											if(mapR == 0)
+												redghost_X_Motion <= 1;
+											else
+												redghost_X_Motion <= 0;
+										end
 								  end
 						// DOWN		  
 						8'h16 : begin
@@ -83,11 +92,15 @@ module  redghost ( input Clk, Reset, frame_clk, lifeDown,
 									// bottom wall
 									if(redghost_Y_Pos + redghost_Size >= redghost_Y_Max)
 										begin
-											redghost_X_Motion <= 0;
 											redghost_Y_Motion <= 0;
 										end
 									else
-										redghost_Y_Motion <= 1;
+										begin
+											if(mapB == 0)
+												redghost_Y_Motion <= 1;
+											else
+												redghost_Y_Motion <= 0;
+										end
 								 end
 						// UP		  
 						8'h1A : begin
@@ -97,7 +110,12 @@ module  redghost ( input Clk, Reset, frame_clk, lifeDown,
 									if(redghost_Y_Pos - redghost_Size <= redghost_Y_Min)
 										redghost_Y_Motion <= 0;
 									else
-										redghost_Y_Motion <= -1;
+										begin
+											if(mapT == 0)
+												redghost_Y_Motion <= -1;
+											else
+												redghost_Y_Motion <= 0;
+										end
 								 end	  
 						default: ;
 					endcase
@@ -105,6 +123,17 @@ module  redghost ( input Clk, Reset, frame_clk, lifeDown,
 					// Update red ghost position
 					 redghost_Y_Pos <= (redghost_Y_Pos + redghost_Y_Motion);
 					 redghost_X_Pos <= (redghost_X_Pos + redghost_X_Motion);
+					 
+					 // wrap around cases
+					 // left -> right
+					 if(redghost_X_Pos <= 10 && redghost_Y_Pos >= 195 && redghost_Y_Pos <= 223)
+						begin
+							redghost_X_Pos <= 385;
+						end
+					 else if(redghost_X_Pos >= 390 && redghost_Y_Pos >= 195 && redghost_Y_Pos <= 223)
+						begin
+							redghost_X_Pos <= 15;
+						end
 					 
 				end
 			
