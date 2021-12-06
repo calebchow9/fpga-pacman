@@ -75,7 +75,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 pacman_ram pr(.data_In(), .write_address(), .read_address(pacman_addr), .we(1'b0), .Clk(Clk), .data_Out(pacman_color));
 	 items_ram ir(.data_In(), .write_address(), .read_address(items_addr), .we(1'b0), .Clk(Clk), .data_Out(items_color));
 	 redghost_ram rr(.data_In(), .write_address(), .read_address(redghost_addr), .we(1'b0), .Clk(Clk), .data_Out(redghost_color));
-	 dots d(.Clk(Clk), .Reset(1'b0), .pX(BallX), .pY(BallY), .dX(dX), .dY(dY), .dots_left(dots_left));
+	 dots d(.Clk(Clk), .Reset(1'b0), .pX(BallX), .pY(BallY), .pS(Ball_size), .dX(dX), .dY(dY), .dots_left(dots_left));
 	 
     always_comb
     begin:PacMan_outline
@@ -253,7 +253,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 						end
 					else if ((peas_mask == 1'b1))
 						begin
-							items_addr <= (DrawY-10) * 26 + (DrawX-370) + 676;
+							items_addr <= (DrawY-10) * 26 + (DrawX-370) + 676 - 1;
 							
 							Red <= items_color[23:16];
 							Green <= items_color[15:8];

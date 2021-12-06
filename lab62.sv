@@ -103,7 +103,7 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	HexDriver hex_driver3 (score_from_reg[3:0], HEX3[6:0]);
 	assign HEX3[7] = 1'b1;
 	
-	HexDriver hex_driver1 (fruits_from_reg[3:0], HEX1[6:0]);
+	HexDriver hex_driver1 (ballxsig[3:0], HEX1[6:0]);
 	assign HEX1[7] = 1'b1;
 	
 	HexDriver hex_driver0 (dots_left[3:0], HEX0[6:0]);
@@ -191,7 +191,7 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	
 	ball b(.Reset(Reset_h), .restart(restart), .lifeDown(lifeDown), .frame_clk(VGA_VS) , .keycode(keycode), .mapL(mapL), .mapR(mapR), .mapB(mapB), .mapT(mapT), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
 
-	redghost rg(.Reset(Reset_h), .frame_clk(VGA_VS) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig));
+	redghost rg(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .frame_clk(VGA_VS) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig), .lifeDown(lifeDown));
 	
 	map_mask mmTop(.x(ballxsig), .y(ballysig), .maskL(mapL), .maskR(mapR), .maskT(mapT), .maskB(mapB));
 	

@@ -76,17 +76,17 @@ module game_logic (input logic Clk, Reset,
 						begin
 							// ghost collisions
 							// top
-//							if (pY == rgY + gSize || pY == bgY + gSize || pY == ogY + gSize)
-//								Next_state = LifeDown;
-//							// left
-//							else if (pX == rgX + gSize || pX == bgX + gSize || pX == ogX + gSize)
-//								Next_state = LifeDown;
-//							// bottom
-//							else if (pY + pSize == rgY || pY + pSize == bgY || pY + pSize == ogY)
-//								Next_state = LifeDown;
-//							// right
-//							else if (pX + pSize == rgX || pX + pSize == bgX || pX + pSize == ogX)
-//								Next_state = LifeDown;
+							if (pY == rgY + gSize || pY == bgY + gSize || pY == ogY + gSize)
+								Next_state = LifeDown;
+							// left
+							else if (pX == rgX + gSize || pX == bgX + gSize || pX == ogX + gSize)
+								Next_state = LifeDown;
+							// bottom
+							else if (pY + pSize == rgY || pY + pSize == bgY || pY + pSize == ogY)
+								Next_state = LifeDown;
+							// right
+							else if (pX + pSize == rgX || pX + pSize == bgX || pX + pSize == ogX)
+								Next_state = LifeDown;
 								
 							// fruit collisions
 							// apple
