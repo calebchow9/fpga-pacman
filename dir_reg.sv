@@ -6,7 +6,7 @@ module dir_reg (input Clk, Reset, Load,
 			always_ff @(posedge Clk)
 			begin
 				if(Reset)
-					Data_out <= 1'b0;
+					Data_out <= 8'b0;
 				else if(Load)
 					Data_out <= Data_in;
 

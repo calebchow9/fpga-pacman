@@ -17,8 +17,8 @@ module  ball ( input Reset, frame_clk,
 					input logic restart, lifeDown,
 					input [7:0] keycode,
 					input [4:0] mapL, mapR, mapB, mapT,
-               output [9:0]  BallX, BallY, BallS,
-					output [3:0] last_dirX, last_dirY
+               output logic [9:0]  BallX, BallY, BallS,
+					output logic [3:0] last_dirX, last_dirY
 );
     
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion, Ball_Size;
@@ -33,13 +33,6 @@ module  ball ( input Reset, frame_clk,
     parameter [9:0] Ball_Y_Step=1;      // Step size on the Y axis
 
     assign Ball_Size = 13;  // assigns the value 4 as a 10-digit binary number, ie "0000000100"
-	 
-	 initial
-		begin
-			// default up mouth
-			last_dirX <= 0;
-			last_dirY <= 0;
-		end
    
     always_ff @ (posedge Reset or posedge frame_clk )
     begin: Move_Ball

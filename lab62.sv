@@ -60,6 +60,28 @@ module lab62 (
 
 logic Reset_h, vssig, blank, sync, VGA_Clk;
 
+// collision variables
+logic [3:0] l_dirX, l_dirY;
+logic [4:0] mapL, mapR, mapB, mapT;
+logic [4:0] RGmapL, RGmapR, RGmapB, RGmapT;
+logic [7:0] gkeycode;
+
+// game state variables
+logic win, lose, restart, lifeDown;
+logic [3:0] fruits;
+logic [9:0] score;
+
+logic Load_score;
+logic Load_fruits;
+logic Load_lives;
+logic [9:0] score_from_reg, score_to_reg;
+logic [3:0] fruits_from_reg, fruits_to_reg;
+logic [7:0] lives_from_reg, lives_to_reg;
+
+// dots
+logic [31:0] dl;
+logic [9:0] dX [0:31];
+logic [9:0] dY [0:31];
 
 //=======================================================
 //  REG/WIRE declarations
@@ -106,7 +128,7 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	HexDriver hex_driver1 (ballxsig[3:0], HEX1[6:0]);
 	assign HEX1[7] = 1'b1;
 	
-	HexDriver hex_driver0 (dots_left[3:0], HEX0[6:0]);
+	HexDriver hex_driver0 (dl[3:0], HEX0[6:0]);
 	assign HEX0[7] = 1'b1;
 	
 	//fill in the hundreds digit as well as the negative sign
@@ -141,7 +163,7 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		.sdram_wire_dq(DRAM_DQ),                             //.dq
 		.sdram_wire_dqm({DRAM_UDQM,DRAM_LDQM}),              //.dqm
 		.sdram_wire_ras_n(DRAM_RAS_N),                       //.ras_n
-		.sdram_wire_we_n(DRAM_WE_N),                         //.we_n
+		.sdram_wire_we_n(DRAM_WE_N),                         //.we_n																			
 
 		//USB SPI	
 		.spi0_SS_n(SPI0_CS_N),
@@ -160,42 +182,23 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		.keycode_export(keycode)
 		
 	 );
-	 
-	 // collision variables
-	 logic [3:0] l_dirX, l_dirY;
-	 logic [4:0] mapL, mapR, mapB, mapT;
-	 logic [4:0] RGmapL, RGmapR, RGmapB, RGmapT;
-	 logic [7:0] gkeycode;
-	 
-	 // game state variables
-	 logic win, lose, restart, lifeDown;
-	 logic [3:0] fruits;
-	 logic [9:0] score;
-	 
-	 logic Load_score;
-	 logic Load_fruits;
-	 logic Load_lives;
-	 logic [9:0] score_from_reg, score_to_reg;
-	 logic [3:0] fruits_from_reg, fruits_to_reg;
-	 logic [7:0] lives_from_reg, lives_to_reg;
-	 
-	 // dots
-	 logic [31:0] dots_left;
 
 
 	// initialize modules
 
 	vga_controller vga(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .hs(VGA_HS), .vs(VGA_VS), .pixel_clk(VGA_Clk), .blank(blank), .sync(sync), .DrawX(drawxsig), .DrawY(drawysig));
 	
-	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY), .score(score_from_reg), .fruits(fruits_from_reg), .lives(lives_from_reg));
+	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY), .score(score_from_reg), .fruits(fruits_from_reg), .lives(lives_from_reg), .dX(dX), .dY(dY));
 	
-	game_logic gl(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .keycode(keycode), .pX(ballxsig), .pY(ballysig), .pSize(ballsizesig), .gSize(redghostsizesig), .rgX(10'd200), .rgY(10'd200), .ogX(10'd200), .ogY(10'd200), .bgX(10'd200), .bgY(10'd200), .win(win), .lose(lose), .fruits_to_reg(fruits_to_reg), .fruits_from_reg(fruits_from_reg), .Load_F(Load_fruits), .score_to_reg(score_to_reg), .Load_S(Load_score), .score_from_reg(score_from_reg), .lives_from_reg(lives_from_reg), .Load_L(Load_lives), .lives_to_reg(lives_to_reg));
+	game_logic gl(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .keycode(keycode), .pX(ballxsig), .pY(ballysig), .pSize(ballsizesig), .gSize(redghostsizesig), .rgX(redghostxsig), .rgY(redghostysig), .ogX(10'd200), .ogY(10'd200), .bgX(10'd200), .bgY(10'd200), .win(win), .lose(lose), .lifeDown(lifeDown), .restart(restart), .fruits_to_reg(fruits_to_reg), .fruits_from_reg(fruits_from_reg), .Load_F(Load_fruits), .score_to_reg(score_to_reg), .Load_S(Load_score), .score_from_reg(score_from_reg), .lives_from_reg(lives_from_reg), .Load_L(Load_lives), .lives_to_reg(lives_to_reg));
 	
 	ball b(.Reset(Reset_h), .restart(restart), .lifeDown(lifeDown), .frame_clk(VGA_VS) , .keycode(keycode), .mapL(mapL), .mapR(mapR), .mapB(mapB), .mapT(mapT), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
 
-	redghost rg(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .frame_clk(VGA_VS) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig), .lifeDown(lifeDown), .keycode(gkeycode), .mapL(RGmaskL), .mapR(RGmaskR), .mapT(RGmaskT), .mapB(RGmaskB));
+	redghost rg(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .frame_clk(VGA_VS) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig), .lifeDown(lifeDown), .restart(restart), .keycode(gkeycode), .mapL(RGmaskL), .mapR(RGmaskR), .mapT(RGmaskT), .mapB(RGmaskB));
 	
 	map_mask mmTop(.x(ballxsig), .y(ballysig), .maskL(mapL), .maskR(mapR), .maskT(mapT), .maskB(mapB), .RGmaskL(RGmaskL), .RGmaskR(RGmaskR), .RGmaskT(RGmaskT), .RGmaskB(RGmaskB));
+	
+	dots d(.Clk(Clk), .Reset(Reset_h), .pX(ballxsig), .pY(ballysig), .pS(ballsizesig), .dX(dX), .dY(dY), .dots_left(dl));
 	
 	// regs to store current score and fruits left
 	score_reg sr(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .Load(Load_score), .Data_in(score_to_reg), .Data_out(score_from_reg));

@@ -14,13 +14,15 @@
 
 module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 							  input 			[9:0] redghostX, redghostY, redghost_size,
+							  input [9:0] dX [0:31],
+							  input [9:0] dY [0:31],
 							  input			[9:0] score,
 							  input			[3:0] fruits,
 							  input			[7:0] lives,
+							  input 			[31:0] dots_left,
 								input logic blank, Clk, VGA_Clk,
 								input logic [3:0] l_dirX, l_dirY,
-                       output logic [7:0]  Red, Green, Blue,
-							  output logic [31:0] dots_left);
+                       output logic [7:0]  Red, Green, Blue);
     
     logic ball_on;
 	  
@@ -63,8 +65,6 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 logic [8:0] redghost_addr;
 	 logic redghost_mask;
 	 
-	 logic [9:0] dX [0:31];
-	 logic [9:0] dY [0:31];
 	 logic dots_mask;
 
 	 
@@ -75,7 +75,6 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 pacman_ram pr(.data_In(), .write_address(), .read_address(pacman_addr), .we(1'b0), .Clk(Clk), .data_Out(pacman_color));
 	 items_ram ir(.data_In(), .write_address(), .read_address(items_addr), .we(1'b0), .Clk(Clk), .data_Out(items_color));
 	 redghost_ram rr(.data_In(), .write_address(), .read_address(redghost_addr), .we(1'b0), .Clk(Clk), .data_Out(redghost_color));
-	 dots d(.Clk(Clk), .Reset(1'b0), .pX(BallX), .pY(BallY), .pS(Ball_size), .dX(dX), .dY(dY), .dots_left(dots_left));
 	 
     always_comb
     begin:PacMan_outline

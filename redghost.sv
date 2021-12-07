@@ -13,13 +13,14 @@
 //-------------------------------------------------------------------------
 
 
-module  redghost ( input Clk, Reset, frame_clk, lifeDown,
+module  redghost ( input Clk, Reset, frame_clk, lifeDown, restart,
 						 input [4:0] mapL, mapR, mapB, mapT,
-               output [9:0]  redghostX, redghostY, redghostS,
+               output logic [9:0]  redghostX, redghostY, redghostS,
 					output logic [7:0] keycode
 );
     
     logic [9:0] redghost_X_Pos, redghost_X_Motion, redghost_Y_Pos, redghost_Y_Motion, redghost_Size;
+	 logic [7:0] random_keycode;
 	 
     parameter [9:0] redghost_X_Center=144;  // Center position on the X axis
     parameter [9:0] redghost_Y_Center=165;  // Center position on the Y axis
@@ -32,24 +33,33 @@ module  redghost ( input Clk, Reset, frame_clk, lifeDown,
 
     assign redghost_Size = 13;  // assigns the value 4 as a 10-digit binary number, ie "0000000100"
 	 
-	 random_dir rd(.Clk(Clk), .Reset(Reset), .dir(keycode));
+	 random_dir rd(.Clk(Clk), .Reset(Reset), .dir(random_keycode));
+	 
+	 assign keycode = random_keycode;
    
     always_ff @ (posedge Reset or posedge frame_clk )
     begin: Move_redghost
         if (Reset)  // Asynchronous Reset
 				begin 
 					redghost_Y_Motion <= 10'd0; //redghost_Y_Step;
-						redghost_X_Motion <= 10'd0; //redghost_X_Step;
-						redghost_Y_Pos <= redghost_Y_Center;
-						redghost_X_Pos <= redghost_X_Center;
-				end  
+					redghost_X_Motion <= 10'd0; //redghost_X_Step;
+					redghost_Y_Pos <= redghost_Y_Center;
+					redghost_X_Pos <= redghost_X_Center;
+				end 
+		  else if (restart || lifeDown)
+				begin 
+					redghost_Y_Motion <= 10'd0; //redghost_Y_Step;
+					redghost_X_Motion <= 10'd0; //redghost_X_Step;
+					redghost_Y_Pos <= redghost_Y_Center;
+					redghost_X_Pos <= redghost_X_Center;
+				end 
         else 
 				begin
 					// default, if no keys pressed then PacMan doesn't move
 					redghost_Y_Motion <= 0;
 					redghost_X_Motion <= 0;
 					
-					case (keycode)
+					case (random_keycode)
 						// LEFT
 						8'h04 : begin
 									redghost_Y_Motion <= 0;

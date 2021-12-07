@@ -38,6 +38,16 @@ vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/D
 vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/Color_Mapper.sv}
 vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/ball.sv}
 vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/redghost.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/game_logic.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/score_reg.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman/output_files {C:/Users/caleb/Desktop/fpga-pacman/output_files/fruits_reg.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/dots.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/dot_reg.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/dots_left_reg.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/lives_reg.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/random_dir.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/dir_reg.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/lfsr_reg.sv}
 vlog -sv -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules {C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_irq_mapper.sv}
 vlog -sv -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules {C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv}
 vlog -sv -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules {C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv}
@@ -62,6 +72,7 @@ vlog -sv -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synt
 vlog -sv -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules {C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_master_translator.sv}
 vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/pacman_ram.sv}
 vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/redghost_ram.sv}
+vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/items_ram.sv}
 
 vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/testbench.sv}
 
@@ -70,4 +81,4 @@ vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lns
 add wave *
 view structure
 view signals
-run 25 ms
+run 1000 ns

@@ -1,5 +1,5 @@
 module map_mask(
-	input [9:0] x, y, rgX, rgY,
+	input [9:0] x, y, rgx, rgy,
 	
 	output mask, 
 	output [4:0] maskL, maskR, maskT, maskB, RGmaskL, RGmaskR, RGmaskT, RGmaskB
@@ -485,23 +485,23 @@ assign maskB = {lineB[x-11], lineB[x-8], lineB[x], lineB[x+8], lineB[x+11]};
 logic [9:0] RGoffL, RGoffR, RGoffT, RGoffB;
 logic [404:0] RGlineT, RGlineB, RGlineplus, RGlineminus, RGlineminus1, RGlineplus1;
 
-assign RGoffL = x-14;
-assign RGoffR = x+14;
-assign RGoffT = y-14;
-assign RGoffB = y+14;
+assign RGoffL = rgx-14;
+assign RGoffR = rgx+14;
+assign RGoffT = rgy-14;
+assign RGoffB = rgy+14;
 
-assign RGline = bit_map[y];
-assign RGlineminus = bit_map[y-8];
-assign RGlineminus1 = bit_map[y-12];
-assign RGlineplus = bit_map[y+8];
-assign RGlineplus1 = bit_map[y+12];
-assign RGlineT = bit_map[offT];
-assign RGlineB = bit_map[offB];
+assign RGline = bit_map[rgy];
+assign RGlineminus = bit_map[rgy-8];
+assign RGlineminus1 = bit_map[rgy-12];
+assign RGlineplus = bit_map[rgy+8];
+assign RGlineplus1 = bit_map[rgy+12];
+assign RGlineT = bit_map[RGoffT];
+assign RGlineB = bit_map[RGoffB];
 
-assign RGmaskL = {RGlineminus1[offL], RGlineminus[offL], RGline[offL], RGlineplus[offL], RGlineplus1[offL]};
-assign RGmaskR = {RGlineminus1[offR], RGlineminus[offR], RGline[offR], RGlineplus[offR], RGlineplus1[offR]};
-assign RGmaskT = {RGlineT[x-11], RGlineT[x-8], RGlineT[x], RGlineT[x+8], RGlineT[x+11]};
-assign RGmaskB = {RGlineB[x-11], RGlineB[x-8], RGlineB[x], RGlineB[x+8], RGlineB[x+11]};
+assign RGmaskL = {RGlineminus1[RGoffL], RGlineminus[RGoffL], RGline[RGoffL], RGlineplus[RGoffL], RGlineplus1[RGoffL]};
+assign RGmaskR = {RGlineminus1[RGoffR], RGlineminus[RGoffR], RGline[RGoffR], RGlineplus[RGoffR], RGlineplus1[RGoffR]};
+assign RGmaskT = {RGlineT[rgx-11], RGlineT[rgx-8], RGlineT[rgx], RGlineT[rgx+8], RGlineT[rgx+11]};
+assign RGmaskB = {RGlineB[rgx-11], RGlineB[rgx-8], RGlineB[rgx], RGlineB[rgx+8], RGlineB[rgx+11]};
 
 
 
