@@ -1,6 +1,6 @@
 module counter_reg (input Clk, Reset, Load,
-					input [32:0] Data_in,
-					output logic [32:0] Data_out
+					input [31:0] Data_in,
+					output logic [31:0] Data_out
 );
 
 			always_ff @(posedge Clk)

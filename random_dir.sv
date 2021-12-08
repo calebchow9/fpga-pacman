@@ -1,5 +1,5 @@
 module random_dir(input Clk, Reset, sec,
-	output logic [7:0] dir
+	output [7:0] dir
 );
 	logic Load_DR;
 	
@@ -26,7 +26,6 @@ module random_dir(input Clk, Reset, sec,
 					2'b01: data_to_dr <= 8'h07; // right
 					2'b10: data_to_dr <= 8'h16; // down
 					2'b11: data_to_dr <= 8'h1A; // up
-					default: data_to_dr <= 8'h04;
 				endcase
 				// load into direction register
 				Load_DR <= 1'b1;

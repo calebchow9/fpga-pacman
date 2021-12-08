@@ -169,10 +169,10 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 				if(DrawX <= dX[dots_i] + 5 && DrawX >= dX[dots_i] && 
 					DrawY <= dY[dots_i] + 5 && DrawY >= dY[dots_i] && dots_left[dots_i] == 1'b0)
 					begin
-						if((DrawX == dX[dots_i] && DrawY == dY[dots_i]) || 
-						   (DrawX == dX[dots_i] + 5 && DrawY == dY[dots_i]) || 
-							(DrawX == dX[dots_i] && DrawY == dY[dots_i] + 5) ||
-							(DrawX == dX[dots_i] + 5 && DrawY == dY[dots_i] + 5))
+						if((DrawX == dX[dots_i] && DrawY == dY[dots_i]) || // top left
+						   (DrawX == dX[dots_i] + 5 && DrawY == dY[dots_i]) || // top right
+							(DrawX == dX[dots_i] && DrawY == dY[dots_i] + 5) || // bottom left
+							(DrawX == dX[dots_i] + 5 && DrawY == dY[dots_i] + 5)) // bottom right
 							dots_mask = 1'b0;
 						else
 							dots_mask = 1'b1;					

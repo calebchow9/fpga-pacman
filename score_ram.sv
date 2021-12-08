@@ -18,7 +18,7 @@ module score_ram(
 	logic [7:0] tens;
 	logic [7:0] ones;
 	
-	logic [63:0] temp_counter;
+	logic [31:0] temp_counter;
 	logic [7:0] chundreds;
 	logic [7:0] ctens;
 	logic [7:0] cones;

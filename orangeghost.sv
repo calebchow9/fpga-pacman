@@ -1,4 +1,4 @@
-module  orangeghost ( input Clk, Reset, frame_clk, lifeDown, restart, sec,
+module  orangeghost ( input Clk, Reset, frame_clk, restart, sec,
 						 input [4:0] mapL, mapR, mapB, mapT,
 						 input [7:0] randomkeycode,
                output logic [9:0]  orangeghostX, orangeghostY, orangeghostS
@@ -16,12 +16,6 @@ module  orangeghost ( input Clk, Reset, frame_clk, lifeDown, restart, sec,
     parameter [9:0] orangeghost_Y_Step=1;      // Step size on the Y axis
 
     assign orangeghost_Size = 13;  // assigns the value 4 as a 10-digit binary number, ie "0000000100"
-	 
-//	 always_ff @ (posedge Reset or posedge frame_clk )
-//	 begin
-//		orangeghost_Y_Pos = 10'd200;
-//		orangeghost_X_Pos = 10'd200;
-//	 end
    
     always_ff @ (posedge Reset or posedge frame_clk )
     begin: Move_orangeghost

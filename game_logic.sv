@@ -23,14 +23,9 @@ module game_logic (input logic Clk, Reset,
 							  Run,
 							  Fruit,
 							  LifeDown,
-							  LifeDown1,
-							  LifeDown2,
-							  LifeDown3,
 							  Game_over,
 							  Game_won
 						  }   State, Next_state;
-						  
-	logic [9:0] score_temp;
 		
 	always_ff @ (posedge Clk)
 	begin
@@ -78,33 +73,39 @@ module game_logic (input logic Clk, Reset,
 						Next_state = Restart;
 					else
 						begin
-							// ghost collisions
+							// red ghost collisions
 							// top
-//							if (pY == rgY + gSize || pY == bgY + gSize || pY == ogY + gSize)
-//								Next_state = LifeDown;
-//							// left
-//							else if (pX == rgX + gSize || pX == bgX + gSize || pX == ogX + gSize)
-//								Next_state = LifeDown;
-//							// bottom
-//							else if (pY + pSize == rgY || pY + pSize == bgY || pY + pSize == ogY)
-//								Next_state = LifeDown;
-//							// right
-//							else if (pX + pSize == rgX || pX + pSize == bgX || pX + pSize == ogX)
-//								Next_state = LifeDown;
-								
-							// fruit collisions
-							// apple
-							if(pX >= 12 && pX <= 37 && pY >= 10 && pY <= 35)
-								Next_state = Fruit;
-							// peas
-							if(pX >= 370 && pX <= 395 && pY >= 10 && pY <= 35)
-								Next_state = Fruit;
-							// grapes
-							if(pX >= 12 && pX <= 37 && pY >= 413 && pY <= 438)
-								Next_state = Fruit;
-							// drink
-							if(pX >= 370 && pX <= 395 && pY >= 413 && pY <= 438)
-								Next_state = Fruit;
+							if(((pY+pSize) == (rgY-gSize) || (pY+pSize + 10'd1) == (rgY-gSize) || (pY+pSize - 10'd1) == (rgY-gSize) || (pY+pSize+10'd2) == (rgY-gSize) || (pY+pSize-10'd2) == (rgY-gSize)) &&
+								(pX == rgX || (pX + 10'd1) == rgX || (pX - 10'd1) == rgX || (pX+10'd2) == rgX || (pX-10'd2) == rgX))
+									Next_state = LifeDown;
+							// bottom
+							else if(((pY-pSize) == (rgY+gSize) || (pY-pSize + 10'd1) == (rgY+gSize) || (pY-pSize - 10'd1) == (rgY+gSize) || (pY-pSize+10'd2) == (rgY+gSize) || (pY-pSize-10'd2) == (rgY+gSize)) &&
+									  (pX == rgX || (pX + 10'd1) == rgX || (pX - 10'd1) == rgX || (pX+10'd2) == rgX || (pX-10'd2) == rgX))
+									Next_state = LifeDown;
+							// left
+							else if(((pX-pSize) == (rgX+gSize) || (pX-pSize + 10'd1) == (rgX+gSize) || (pX-pSize - 10'd1) == (rgX+gSize) || (pX-pSize+10'd2) == (rgX+gSize) || (pX-pSize-10'd2) == (rgX+gSize)) &&
+									  (pY == rgY || (pY + 10'd1) == rgY || (pY - 10'd1) == rgY || (pY+10'd2) == rgY || (pY-10'd2) == rgY))
+									Next_state = LifeDown;
+							// right
+							else if(((pX+pSize) == (rgX-gSize) || (pX+pSize + 10'd1) == (rgX-gSize) || (pX+pSize - 10'd1) == (rgX-gSize) || (pX+pSize+10'd2) == (rgX-gSize) || (pX+pSize-10'd2) == (rgX-gSize)) &&
+								     (pY == rgY || (pY + 10'd1) == rgY || (pY - 10'd1) == rgY || (pY+10'd2) == rgY || (pY-10'd2) == rgY))
+									Next_state = LifeDown;					
+							else
+								begin
+									// fruit collisions
+									// apple
+									if(pX >= 12 && pX <= 37 && pY >= 10 && pY <= 35)
+										Next_state = Fruit;
+									// peas
+									if(pX >= 370 && pX <= 395 && pY >= 10 && pY <= 35)
+										Next_state = Fruit;
+									// grapes
+									if(pX >= 12 && pX <= 37 && pY >= 413 && pY <= 438)
+										Next_state = Fruit;
+									// drink
+									if(pX >= 370 && pX <= 395 && pY >= 413 && pY <= 438)
+										Next_state = Fruit;
+								end
 							
 							// ran out of time
 							if(counter == 32'd0)
@@ -122,25 +123,15 @@ module game_logic (input logic Clk, Reset,
 					if(lives_to_reg == 3)
 						Next_state = Game_over;
 					else
-						Next_state = LifeDown1;
+						Next_state = Run;
 				end
-				
-			LifeDown1:
-				Next_state = LifeDown2;
-			
-			LifeDown2:
-				Next_state = LifeDown3;
-				
-			LifeDown3:
-				Next_state = Run;
 			
 			// remove fruit -> continue game
 			Fruit:
 				Next_state = Run;
 			
 			// Game over -> resets
-			Game_over:
-				Next_state = Pause;
+			Game_over: ;
 			
 			// Game won -> resets
 			Game_won:
@@ -159,15 +150,6 @@ module game_logic (input logic Clk, Reset,
 			Pause: ;
 			
 			LifeDown: 
-				lifeDown = 1'b1;
-			
-			LifeDown1:
-				lifeDown = 1'b1;
-			
-			LifeDown2:
-				lifeDown = 1'b1;
-			
-			LifeDown3:
 				lifeDown = 1'b1;
 				
 			Game_over:

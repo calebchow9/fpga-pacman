@@ -12,7 +12,8 @@ module dot(input [9:0] x, y, pX, pY, pS,
 	begin
 		Load_D = 1'b0;
 		data_to_load = 1'b0;
-		if((x == pX + pS || x == pX - pS || x == pX) && (y == pY || y == pY - pS || y == pY + pS))
+		if((x == pX || x == pX+10'd1 || x == pX-10'd1 || x == pX+10'd2 || x == pX-10'd2 || x == pX+10'd3 || x == pX-10'd3 || x == pX+10'd4 || x == pX-10'd4 || x == pX+10'd5 || x == pX-10'd5) && 
+			(y == pY || y == pY+10'd1 || y == pY-10'd1 || y == pY+10'd2 || y == pY-10'd2 || y == pY+10'd3 || y == pY-10'd3 || y == pY+10'd4 || y == pY-10'd4 || y == pY+10'd5 || y == pY-10'd5))
 			begin
 				//PacMan hit dot -> remove
 				data_to_load <= 1'b1;

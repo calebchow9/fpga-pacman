@@ -1,4 +1,4 @@
-module  redghost ( input Clk, Reset, frame_clk, lifeDown, restart, sec,
+module  redghost ( input Clk, Reset, frame_clk, restart, sec,
 						 input [4:0] mapL, mapR, mapB, mapT,
 						 input [7:0] randomkeycode,
                output logic [9:0]  redghostX, redghostY, redghostS
