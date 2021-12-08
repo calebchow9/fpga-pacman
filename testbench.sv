@@ -15,8 +15,11 @@ logic [9:0] redghostxsig, redghostysig, redghostsizesig;
 logic lifeDown, restart;
 logic [7:0] gkeycode;
 
+logic sec;
+
 //dots d(.Clk(Clk), .Reset(Reset), .pX(pX), .pY(pY), .pS(pS), .dX(dX), .dY(dY), .dots_left(dots_left));
-redghost rg(.Clk(Clk), .Reset(Reset), .frame_clk(Clk) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig), .lifeDown(lifeDown), .restart(restart), .keycode(gkeycode), .mapL(5'b00000), .mapR(5'b00000), .mapT(5'b00000), .mapB(5'b00000));
+redghost rg(.Clk(Clk), .sec(sec), .Reset(Reset), .frame_clk(Clk) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig), .lifeDown(lifeDown), .restart(restart), .keycode(gkeycode), .mapL(5'b00000), .mapR(5'b00000), .mapT(5'b00000), .mapB(5'b00000));
+//second_counter secc(.Clk(Clk), .Reset(Reset), .sec(sec));
 
 // Toggle the clock
 // #1 means wait for a delay of 1 timeunit

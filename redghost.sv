@@ -1,29 +1,13 @@
-//-------------------------------------------------------------------------
-//    redghost.sv                                                            --
-//    Viral Mehta                                                        --
-//    Spring 2005                                                        --
-//                                                                       --
-//    Modified by Stephen Kempf 03-01-2006                               --
-//                              03-12-2007                               --
-//    Translated by Joe Meng    07-07-2013                               --
-//    Fall 2014 Distribution                                             --
-//                                                                       --
-//    For use with ECE 298 Lab 7                                         --
-//    UIUC ECE Department                                                --
-//-------------------------------------------------------------------------
-
-
-module  redghost ( input Clk, Reset, frame_clk, lifeDown, restart,
+module  redghost ( input Clk, Reset, frame_clk, lifeDown, restart, sec,
 						 input [4:0] mapL, mapR, mapB, mapT,
-               output logic [9:0]  redghostX, redghostY, redghostS,
-					output logic [7:0] keycode
+						 input [7:0] randomkeycode,
+               output logic [9:0]  redghostX, redghostY, redghostS
 );
     
     logic [9:0] redghost_X_Pos, redghost_X_Motion, redghost_Y_Pos, redghost_Y_Motion, redghost_Size;
-	 logic [7:0] random_keycode;
 	 
-    parameter [9:0] redghost_X_Center=144;  // Center position on the X axis
-    parameter [9:0] redghost_Y_Center=165;  // Center position on the Y axis
+    parameter [9:0] redghost_X_Center=142;  // Center position on the X axis
+    parameter [9:0] redghost_Y_Center=166;  // Center position on the Y axis
     parameter [9:0] redghost_X_Min=7;       // left border of maze
     parameter [9:0] redghost_X_Max=396;     // right border of maze
     parameter [9:0] redghost_Y_Min=7;       // top border of maze
@@ -32,10 +16,6 @@ module  redghost ( input Clk, Reset, frame_clk, lifeDown, restart,
     parameter [9:0] redghost_Y_Step=1;      // Step size on the Y axis
 
     assign redghost_Size = 13;  // assigns the value 4 as a 10-digit binary number, ie "0000000100"
-	 
-	 random_dir rd(.Clk(Clk), .Reset(Reset), .dir(random_keycode));
-	 
-	 assign keycode = random_keycode;
    
     always_ff @ (posedge Reset or posedge frame_clk )
     begin: Move_redghost
@@ -46,7 +26,7 @@ module  redghost ( input Clk, Reset, frame_clk, lifeDown, restart,
 					redghost_Y_Pos <= redghost_Y_Center;
 					redghost_X_Pos <= redghost_X_Center;
 				end 
-		  else if (restart || lifeDown)
+		  else if (restart)
 				begin 
 					redghost_Y_Motion <= 10'd0; //redghost_Y_Step;
 					redghost_X_Motion <= 10'd0; //redghost_X_Step;
@@ -55,11 +35,7 @@ module  redghost ( input Clk, Reset, frame_clk, lifeDown, restart,
 				end 
         else 
 				begin
-					// default, if no keys pressed then PacMan doesn't move
-					redghost_Y_Motion <= 0;
-					redghost_X_Motion <= 0;
-					
-					case (random_keycode)
+					case (randomkeycode)
 						// LEFT
 						8'h04 : begin
 									redghost_Y_Motion <= 0;

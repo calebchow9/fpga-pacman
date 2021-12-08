@@ -15,8 +15,8 @@ module dot(input [9:0] x, y, pX, pY, pS,
 		if((x == pX + pS || x == pX - pS || x == pX) && (y == pY || y == pY - pS || y == pY + pS))
 			begin
 				//PacMan hit dot -> remove
-				data_to_load = 1'b1;
-				Load_D = 1'b1;
+				data_to_load <= 1'b1;
+				Load_D <= 1'b1;
 			end
 	end	  
 endmodule

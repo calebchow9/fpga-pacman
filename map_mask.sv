@@ -1,11 +1,12 @@
 module map_mask(
-	input [9:0] x, y, rgx, rgy,
+	input [9:0] x, y, rgx, rgy, ogx, ogy,
 	
 	output mask, 
-	output [4:0] maskL, maskR, maskT, maskB, RGmaskL, RGmaskR, RGmaskT, RGmaskB
+	output [4:0] maskL, maskR, maskT, maskB, RGmaskL, RGmaskR, RGmaskT, RGmaskB, OGmaskL, OGmaskR, OGmaskT, OGmaskB
 );
 	logic [404:0] line;
 	logic [404:0] RGline;
+	logic [404:0] OGline;
 
 	// maze size 405 (width) x 448 (height)
 	// ROM definition
@@ -503,6 +504,26 @@ assign RGmaskR = {RGlineminus1[RGoffR], RGlineminus[RGoffR], RGline[RGoffR], RGl
 assign RGmaskT = {RGlineT[rgx-11], RGlineT[rgx-8], RGlineT[rgx], RGlineT[rgx+8], RGlineT[rgx+11]};
 assign RGmaskB = {RGlineB[rgx-11], RGlineB[rgx-8], RGlineB[rgx], RGlineB[rgx+8], RGlineB[rgx+11]};
 
+// orange ghost collisions
+logic [9:0] OGoffL, OGoffR, OGoffT, OGoffB;
+logic [404:0] OGlineT, OGlineB, OGlineplus, OGlineminus, OGlineminus1, OGlineplus1;
 
+assign OGoffL = ogx-14;
+assign OGoffR = ogx+14;
+assign OGoffT = ogy-14;
+assign OGoffB = ogy+14;
+
+assign OGline = bit_map[ogy];
+assign OGlineminus = bit_map[ogy-8];
+assign OGlineminus1 = bit_map[ogy-12];
+assign OGlineplus = bit_map[ogy+8];
+assign OGlineplus1 = bit_map[ogy+12];
+assign OGlineT = bit_map[OGoffT];
+assign OGlineB = bit_map[OGoffB];
+
+assign OGmaskL = {OGlineminus1[OGoffL], OGlineminus[OGoffL], OGline[OGoffL], OGlineplus[OGoffL], OGlineplus1[OGoffL]};
+assign OGmaskR = {OGlineminus1[OGoffR], OGlineminus[OGoffR], OGline[OGoffR], OGlineplus[OGoffR], OGlineplus1[OGoffR]};
+assign OGmaskT = {OGlineT[ogx-11], OGlineT[ogx-8], OGlineT[ogx], OGlineT[ogx+8], OGlineT[ogx+11]};
+assign OGmaskB = {OGlineB[ogx-11], OGlineB[ogx-8], OGlineB[ogx], OGlineB[ogx+8], OGlineB[ogx+11]};
 
 endmodule

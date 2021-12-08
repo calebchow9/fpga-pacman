@@ -64,7 +64,8 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 logic [3:0] l_dirX, l_dirY;
 logic [4:0] mapL, mapR, mapB, mapT;
 logic [4:0] RGmapL, RGmapR, RGmapB, RGmapT;
-logic [7:0] gkeycode;
+logic [4:0] OGmapL, OGmapR, OGmapB, OGmapT;
+logic [7:0] randomkeycode;
 
 // game state variables
 logic win, lose, restart, lifeDown;
@@ -83,16 +84,21 @@ logic [31:0] dl;
 logic [9:0] dX [0:31];
 logic [9:0] dY [0:31];
 
+// timer
+logic sec;
+logic [31:0] counter;
+
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
 	logic SPI0_CS_N, SPI0_SCLK, SPI0_MISO, SPI0_MOSI, USB_GPX, USB_IRQ, USB_RST;
-	logic [3:0] hex_num_4, hex_num_3, hex_num_1, hex_num_0; //4 bit input hex digits
+	logic [3:0] hex_num_4, hex_num_3, hex_num_1, hex_num_0, hex_num5, hex_num6; //4 bit input hex digits
 	logic [1:0] signs;
 	logic [1:0] hundreds;
 	logic [9:0] drawxsig, drawysig;
 	logic [9:0] ballxsig, ballysig, ballsizesig;
 	logic [9:0] redghostxsig, redghostysig, redghostsizesig;
+	logic [9:0] orangeghostxsig, orangeghostysig, orangeghostsizesig;
 	
 	logic [7:0] Red, Blue, Green;
 	logic [7:0] keycode;
@@ -119,10 +125,10 @@ logic [9:0] dY [0:31];
 	assign ARDUINO_IO[6] = 1'b1;
 	
 	//HEX drivers to convert numbers to HEX output
-	HexDriver hex_driver4 (gkeycode[7:4], HEX4[6:0]);
+	HexDriver hex_driver4 (ballysig[7:4], HEX4[6:0]);
 	assign HEX4[7] = 1'b1;
 	
-	HexDriver hex_driver3 (gkeycode[3:0], HEX3[6:0]);
+	HexDriver hex_driver3 (ballysig[3:0], HEX3[6:0]);
 	assign HEX3[7] = 1'b1;
 	
 	HexDriver hex_driver1 (ballxsig[3:0], HEX1[6:0]);
@@ -188,17 +194,23 @@ logic [9:0] dY [0:31];
 
 	vga_controller vga(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .hs(VGA_HS), .vs(VGA_VS), .pixel_clk(VGA_Clk), .blank(blank), .sync(sync), .DrawX(drawxsig), .DrawY(drawysig));
 	
-	color_mapper cm(.redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .blank(blank), .Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .l_dirX(l_dirX), .l_dirY(l_dirY), .score(score_from_reg), .fruits(fruits_from_reg), .lives(lives_from_reg), .dX(dX), .dY(dY));
+	color_mapper cm(.Clk(MAX10_CLK1_50), .VGA_Clk(VGA_Clk), .redghostX(redghostxsig), .redghostY(redghostysig), .redghost_size(redghostsizesig), .orangeghostX(orangeghostxsig), .orangeghostY(orangeghostysig), .orangeghost_size(orangeghostsizesig), .BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(Red), .Green(Green), .Blue(Blue), .blank(blank), .l_dirX(l_dirX), .l_dirY(l_dirY), .score(score_from_reg), .fruits(fruits_from_reg), .lives(lives_from_reg), .counter(counter), .dX(dX), .dY(dY), .lose(lose), .win(win));
 	
-	game_logic gl(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .keycode(keycode), .pX(ballxsig), .pY(ballysig), .pSize(ballsizesig), .gSize(redghostsizesig), .rgX(redghostxsig), .rgY(redghostysig), .ogX(10'd200), .ogY(10'd200), .bgX(10'd200), .bgY(10'd200), .win(win), .lose(lose), .lifeDown(lifeDown), .restart(restart), .fruits_to_reg(fruits_to_reg), .fruits_from_reg(fruits_from_reg), .Load_F(Load_fruits), .score_to_reg(score_to_reg), .Load_S(Load_score), .score_from_reg(score_from_reg), .lives_from_reg(lives_from_reg), .Load_L(Load_lives), .lives_to_reg(lives_to_reg));
+	game_logic gl(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .counter(counter), .keycode(keycode), .pX(ballxsig), .pY(ballysig), .pSize(ballsizesig), .gSize(redghostsizesig), .rgX(redghostxsig), .rgY(redghostysig), .ogX(orangeghostxsig), .ogY(orangeghostysig), .bgX(10'd200), .bgY(10'd200), .win(win), .lose(lose), .lifeDown(lifeDown), .restart(restart), .fruits_to_reg(fruits_to_reg), .fruits_from_reg(fruits_from_reg), .Load_F(Load_fruits), .score_to_reg(score_to_reg), .Load_S(Load_score), .score_from_reg(score_from_reg), .lives_from_reg(lives_from_reg), .Load_L(Load_lives), .lives_to_reg(lives_to_reg));
 	
 	ball b(.Reset(Reset_h), .restart(restart), .lifeDown(lifeDown), .frame_clk(VGA_VS) , .keycode(keycode), .mapL(mapL), .mapR(mapR), .mapB(mapB), .mapT(mapT), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .last_dirX(l_dirX), .last_dirY(l_dirY));
 
-	redghost rg(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .frame_clk(VGA_VS) , .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig), .lifeDown(lifeDown), .restart(restart), .keycode(gkeycode), .mapL(RGmaskL), .mapR(RGmaskR), .mapT(RGmaskT), .mapB(RGmaskB));
+	redghost rg(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .frame_clk(VGA_VS), .sec(sec), .randomkeycode(randomkeycode), .redghostX(redghostxsig), .redghostY(redghostysig), .redghostS(redghostsizesig), .lifeDown(lifeDown), .restart(restart), .mapL(RGmaskL), .mapR(RGmaskR), .mapT(RGmaskT), .mapB(RGmaskB));
 	
-	map_mask mmTop(.x(ballxsig), .y(ballysig), .maskL(mapL), .maskR(mapR), .maskT(mapT), .maskB(mapB), .RGmaskL(RGmaskL), .RGmaskR(RGmaskR), .RGmaskT(RGmaskT), .RGmaskB(RGmaskB));
+	orangeghost og(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .frame_clk(VGA_VS) , .sec(sec), .randomkeycode(randomkeycode), .orangeghostX(orangeghostxsig), .orangeghostY(orangeghostysig), .orangeghostS(orangeghostsizesig), .lifeDown(lifeDown), .restart(restart), .mapL(OGmaskL), .mapR(OGmaskR), .mapT(OGmaskT), .mapB(OGmaskB));
 	
-	dots d(.Clk(Clk), .Reset(Reset_h), .pX(ballxsig), .pY(ballysig), .pS(ballsizesig), .dX(dX), .dY(dY), .dots_left(dl));
+	map_mask mmTop(.x(ballxsig), .y(ballysig), .rgx(redghostxsig), .rgy(redghostysig), .ogx(orangeghostxsig), .ogy(orangeghostysig), .maskL(mapL), .maskR(mapR), .maskT(mapT), .maskB(mapB), .RGmaskL(RGmaskL), .RGmaskR(RGmaskR), .RGmaskT(RGmaskT), .RGmaskB(RGmaskB), .OGmaskL(OGmaskL), .OGmaskR(OGmaskR), .OGmaskT(OGmaskT), .OGmaskB(OGmaskB));
+	
+	dots d(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .pX(ballxsig), .pY(ballysig), .pS(ballsizesig), .dX(dX), .dY(dY), .dots_left(dl));
+	
+	second_counter(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .sec(sec), .counter_out(counter));
+	
+	random_dir rd(.Clk(MAX10_CLK1_50), .sec(sec), .Reset(Reset), .dir(random_keycode));
 	
 	// regs to store current score and fruits left
 	score_reg sr(.Clk(MAX10_CLK1_50), .Reset(Reset_h), .Load(Load_score), .Data_in(score_to_reg), .Data_out(score_from_reg));

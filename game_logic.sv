@@ -1,5 +1,6 @@
 module game_logic (input logic Clk, Reset,
 						 input [7:0] keycode,
+						 input [31:0] counter,
 						 // current location of PacMan and ghosts (top left corner)
 						 input logic [9:0] pX, pY, rgX, rgY, bgX, bgY, ogX, ogY,
 						 input logic [9:0] pSize, gSize,
@@ -22,6 +23,9 @@ module game_logic (input logic Clk, Reset,
 							  Run,
 							  Fruit,
 							  LifeDown,
+							  LifeDown1,
+							  LifeDown2,
+							  LifeDown3,
 							  Game_over,
 							  Game_won
 						  }   State, Next_state;
@@ -76,17 +80,17 @@ module game_logic (input logic Clk, Reset,
 						begin
 							// ghost collisions
 							// top
-							if (pY == rgY + gSize || pY == bgY + gSize || pY == ogY + gSize)
-								Next_state = LifeDown;
-							// left
-							else if (pX == rgX + gSize || pX == bgX + gSize || pX == ogX + gSize)
-								Next_state = LifeDown;
-							// bottom
-							else if (pY + pSize == rgY || pY + pSize == bgY || pY + pSize == ogY)
-								Next_state = LifeDown;
-							// right
-							else if (pX + pSize == rgX || pX + pSize == bgX || pX + pSize == ogX)
-								Next_state = LifeDown;
+//							if (pY == rgY + gSize || pY == bgY + gSize || pY == ogY + gSize)
+//								Next_state = LifeDown;
+//							// left
+//							else if (pX == rgX + gSize || pX == bgX + gSize || pX == ogX + gSize)
+//								Next_state = LifeDown;
+//							// bottom
+//							else if (pY + pSize == rgY || pY + pSize == bgY || pY + pSize == ogY)
+//								Next_state = LifeDown;
+//							// right
+//							else if (pX + pSize == rgX || pX + pSize == bgX || pX + pSize == ogX)
+//								Next_state = LifeDown;
 								
 							// fruit collisions
 							// apple
@@ -101,6 +105,10 @@ module game_logic (input logic Clk, Reset,
 							// drink
 							if(pX >= 370 && pX <= 395 && pY >= 413 && pY <= 438)
 								Next_state = Fruit;
+							
+							// ran out of time
+							if(counter == 32'd0)
+								Next_state = Game_over;
 						end
 				end
 				
@@ -114,8 +122,17 @@ module game_logic (input logic Clk, Reset,
 					if(lives_to_reg == 3)
 						Next_state = Game_over;
 					else
-						Next_state = Run;
+						Next_state = LifeDown1;
 				end
+				
+			LifeDown1:
+				Next_state = LifeDown2;
+			
+			LifeDown2:
+				Next_state = LifeDown3;
+				
+			LifeDown3:
+				Next_state = Run;
 			
 			// remove fruit -> continue game
 			Fruit:
@@ -138,12 +155,19 @@ module game_logic (input logic Clk, Reset,
 		// Assign control signals based on current state
 		case (State)
 			Restart:
-				begin
-					restart = 1'b1;
-				end
+				restart = 1'b1;
 			Pause: ;
 			
 			LifeDown: 
+				lifeDown = 1'b1;
+			
+			LifeDown1:
+				lifeDown = 1'b1;
+			
+			LifeDown2:
+				lifeDown = 1'b1;
+			
+			LifeDown3:
 				lifeDown = 1'b1;
 				
 			Game_over:
@@ -152,10 +176,7 @@ module game_logic (input logic Clk, Reset,
 			Game_won:
 				win = 1'b1;
 				
-			Run:
-				begin
-				
-				end
+			Run: ;
 			
 			Fruit:
 				begin
