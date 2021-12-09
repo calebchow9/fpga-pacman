@@ -1,4 +1,4 @@
-module second_counter (input Clk, Reset, 
+module second_counter (input Clk, Reset,
 							  output logic sec, 
 							  output logic [31:0] counter_out
 );

@@ -275,9 +275,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE output_files/fruits_reg.sv
 set_global_assignment -name SYSTEMVERILOG_FILE dots.sv
 set_global_assignment -name SYSTEMVERILOG_FILE dot_reg.sv
 set_global_assignment -name SYSTEMVERILOG_FILE dots_left_reg.sv
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name SYSTEMVERILOG_FILE lives_reg.sv
 set_global_assignment -name SYSTEMVERILOG_FILE random_dir.sv
 set_global_assignment -name SYSTEMVERILOG_FILE dir_reg.sv
@@ -287,4 +284,9 @@ set_global_assignment -name SYSTEMVERILOG_FILE second_counter.sv
 set_global_assignment -name SYSTEMVERILOG_FILE orangeghost_ram.sv
 set_global_assignment -name SYSTEMVERILOG_FILE orangeghost.sv
 set_global_assignment -name EDA_TEST_BENCH_FILE testbench.sv -section_id testbench
+set_global_assignment -name SYSTEMVERILOG_FILE blueghost_ram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE blueghost.sv
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

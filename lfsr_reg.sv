@@ -1,19 +1,23 @@
 module lfsr_reg(
   input Clk,
-  output reg [7:0] LFSR = 255   // put here the initial value
+  output [7:0] LFSR
 );
 
+logic [7:0] temp = 8'd55;
 wire feedback = LFSR[7];
 
 always @(posedge Clk)
 begin
-  LFSR[0] <= feedback;
-  LFSR[1] <= LFSR[0];
-  LFSR[2] <= LFSR[1] ^ feedback;
-  LFSR[3] <= LFSR[2] ^ feedback;
-  LFSR[4] <= LFSR[3] ^ feedback;
-  LFSR[5] <= LFSR[4];
-  LFSR[6] <= LFSR[5];
-  LFSR[7] <= LFSR[6];
+  temp[0] <= feedback;
+  temp[1] <= temp[0];
+  temp[2] <= temp[1] ^ feedback;
+  temp[3] <= temp[2] ^ feedback;
+  temp[4] <= temp[3] ^ feedback;
+  temp[5] <= temp[4];
+  temp[6] <= temp[5];
+  temp[7] <= temp[6];
 end
+
+assign LFSR = temp;
+
 endmodule

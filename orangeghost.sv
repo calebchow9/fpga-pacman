@@ -1,4 +1,4 @@
-module  orangeghost ( input Clk, Reset, frame_clk, restart, sec,
+module  orangeghost ( input Clk, Reset, frame_clk, pause, sec,
 						 input [4:0] mapL, mapR, mapB, mapT,
 						 input [7:0] randomkeycode,
                output logic [9:0]  orangeghostX, orangeghostY, orangeghostS
@@ -6,8 +6,8 @@ module  orangeghost ( input Clk, Reset, frame_clk, restart, sec,
     
     logic [9:0] orangeghost_X_Pos, orangeghost_X_Motion, orangeghost_Y_Pos, orangeghost_Y_Motion, orangeghost_Size;
 	 
-    parameter [9:0] orangeghost_X_Center=264;  // Center position on the X axis
-    parameter [9:0] orangeghost_Y_Center=166;  // Center position on the Y axis
+    parameter [9:0] orangeghost_X_Center=204;  // Center position on the X axis
+    parameter [9:0] orangeghost_Y_Center=339;  // Center position on the Y axis
     parameter [9:0] orangeghost_X_Min=7;       // left border of maze
     parameter [9:0] orangeghost_X_Max=396;     // right border of maze
     parameter [9:0] orangeghost_Y_Min=7;       // top border of maze
@@ -26,7 +26,7 @@ module  orangeghost ( input Clk, Reset, frame_clk, restart, sec,
 					orangeghost_Y_Pos <= orangeghost_Y_Center;
 					orangeghost_X_Pos <= orangeghost_X_Center;
 				end 
-		  else if (restart)
+		  else if (pause)
 				begin 
 					orangeghost_Y_Motion <= 10'd0; //orangeghost_Y_Step;
 					orangeghost_X_Motion <= 10'd0; //orangeghost_X_Step;

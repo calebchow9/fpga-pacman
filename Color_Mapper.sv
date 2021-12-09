@@ -15,6 +15,7 @@
 module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 							  input 			[9:0] redghostX, redghostY, redghost_size,
 							  input 			[9:0] orangeghostX, orangeghostY, orangeghost_size,
+							  input 			[9:0] blueghostX, blueghostY, blueghost_size,
 							  input [9:0] dX [0:31],
 							  input [9:0] dY [0:31],
 							  input			[9:0] score,
@@ -31,7 +32,8 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	  
     int DistX, DistY, Size;
 	 int RedX, RedY, RedSize;
-	 int OrangeX, OrangeY, OrangeSize;
+	 int OrangeX, OrangeY;
+	 int BlueX, BlueY;
 
 	 assign DistX = DrawX - BallX;
     assign DistY = DrawY - BallY;
@@ -43,6 +45,9 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 
 	 assign OrangeX = DrawX - orangeghostX;
 	 assign OrangeY = DrawY - orangeghostY;
+	 
+	 assign BlueX = DrawX - blueghostX;
+	 assign BlueY = DrawY - blueghostY;
 
 	 // MAP SIZE: x: 405, y: 448
 	 logic map_mask;
@@ -77,6 +82,11 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 logic [8:0] orangeghost_addr;
 	 logic orangeghost_mask;
 	 
+	 // blueghost logic
+	 logic [23:0] blueghost_color;
+	 logic [8:0] blueghost_addr;
+	 logic blueghost_mask;
+	 
 	 logic dots_mask;
 
 	 
@@ -88,6 +98,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	 items_ram ir(.data_In(), .write_address(), .read_address(items_addr), .we(1'b0), .Clk(Clk), .data_Out(items_color));
 	 redghost_ram rr(.data_In(), .write_address(), .read_address(redghost_addr), .we(1'b0), .Clk(Clk), .data_Out(redghost_color));
 	 orangeghost_ram orr(.data_In(), .write_address(), .read_address(orangeghost_addr), .we(1'b0), .Clk(Clk), .data_Out(orangeghost_color));
+	 blueghost_ram bgr(.data_In(), .write_address(), .read_address(blueghost_addr), .we(1'b0), .Clk(Clk), .data_Out(blueghost_color));
 	 
     always_comb
     begin:PacMan_outline
@@ -113,6 +124,15 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 			orangeghost_mask = 1'b1;
 		else
 			orangeghost_mask = 1'b0;
+		end
+		
+	 // draw blue ghost
+	  always_comb
+	  begin:bg_outline
+		if((BlueX*BlueX + BlueY*BlueY) <= (blueghost_size * blueghost_size))
+			blueghost_mask = 1'b1;
+		else
+			blueghost_mask = 1'b0;
 		end
 
 	 // draw items
@@ -272,6 +292,14 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 							Red <= orangeghost_color[23:16];
 							Green <= orangeghost_color[15:8];
 							Blue <= orangeghost_color[7:0];
+						end
+					else if ((blueghost_mask == 1'b1))
+						begin
+							blueghost_addr <= (DrawY-(blueghostY-blueghost_size)) * 26 + DrawX-(blueghostX-blueghost_size);
+							
+							Red <= blueghost_color[23:16];
+							Green <= blueghost_color[15:8];
+							Blue <= blueghost_color[7:0];
 						end
 					else if ((apple_mask == 1'b1))
 						begin

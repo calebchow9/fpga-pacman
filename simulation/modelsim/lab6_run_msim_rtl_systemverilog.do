@@ -51,7 +51,6 @@ vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/D
 vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/counter_reg.sv}
 vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/second_counter.sv}
 vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/orangeghost.sv}
-vlog -sv -work work +incdir+C:/Users/caleb/Desktop/fpga-pacman {C:/Users/caleb/Desktop/fpga-pacman/dots_test.sv}
 vlog -sv -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules {C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_irq_mapper.sv}
 vlog -sv -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules {C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv}
 vlog -sv -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules {C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv}

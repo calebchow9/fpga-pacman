@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/caleb/Desktop/fpga-pacman/simulation/modelsim
 valtera_avalon_sc_fifo
-Z1 !s110 1638991499
+Z1 !s110 1639004203
 !i10b 1
 !s100 4mK@em][G=j]om3zJIhOc0
 Ie5j=B7<:AMiV]QDKeJ^CV2
@@ -23,7 +23,7 @@ Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z6 !s108 1638991499.000000
+Z6 !s108 1639004203.000000
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_avalon_sc_fifo.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_avalon_sc_fifo.v|
 !i113 1
@@ -31,7 +31,7 @@ Z7 o-vlog01compat -work lab62soc
 Z8 !s92 -vlog01compat -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules
 Z9 tCvgOpt 0
 valtera_avalon_st_clock_crosser
-Z10 !s110 1638991503
+Z10 !s110 1639004206
 !i10b 1
 !s100 YbU`iK^TYJ_9Hz`CZekjQ3
 IVUMd_635UcPN>`G:YLH>10
@@ -45,7 +45,7 @@ R5
 r1
 !s85 0
 31
-Z11 !s108 1638991503.000000
+Z11 !s108 1639004206.000000
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_avalon_st_clock_crosser.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_avalon_st_clock_crosser.v|
 !i113 1
@@ -76,28 +76,28 @@ R8
 R9
 valtera_merlin_arb_adder
 Z13 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-R10
+Z14 !s110 1639004207
 !i10b 1
 !s100 1Jn[a;@5nZmTN?DFKQNzj2
 I1ZjKf1]`T1G=_[SE;6`D:2
 R2
-Z14 !s105 altera_merlin_arbitrator_sv_unit
+Z15 !s105 altera_merlin_arbitrator_sv_unit
 S1
 R0
 R3
-Z15 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_arbitrator.sv
-Z16 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_arbitrator.sv
+Z16 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_arbitrator.sv
+Z17 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_arbitrator.sv
 L0 228
 R5
 r1
 !s85 0
 31
 R11
-Z17 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_arbitrator.sv|
-Z18 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_arbitrator.sv|
+Z18 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_arbitrator.sv|
+Z19 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_arbitrator.sv|
 !i113 1
-Z19 o-sv -work lab62soc
-Z20 !s92 -sv -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules
+Z20 o-sv -work lab62soc
+Z21 !s92 -sv -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules
 R9
 valtera_merlin_arbitrator
 R13
@@ -106,27 +106,27 @@ R10
 !s100 NQTehjm2fNQROUMUzShGa1
 Ia=P1@9@V^jjbE:S^<PLE=0
 R2
-R14
+R15
 S1
 R0
 R3
-R15
 R16
+R17
 L0 103
 R5
 r1
 !s85 0
 31
 R11
-R17
 R18
-!i113 1
 R19
+!i113 1
 R20
+R21
 R9
 valtera_merlin_burst_adapter
 R13
-R10
+R14
 !i10b 1
 !s100 OCc70X^k:B?GW6i71n`L_3
 I]JP@1m_FMnak8OjW2[51T2
@@ -142,16 +142,16 @@ R5
 r1
 !s85 0
 31
-R11
+Z22 !s108 1639004207.000000
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_burst_adapter.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_burst_adapter.sv|
 !i113 1
-R19
 R20
+R21
 R9
 valtera_merlin_burst_adapter_uncompressed_only
 R13
-Z21 !s110 1638991504
+R14
 !i10b 1
 !s100 STH]BdUM[JDMJZNJGXCd>0
 IFBMD:KRYbYmCUA6L]HFaK1
@@ -167,12 +167,12 @@ R5
 r1
 !s85 0
 31
-Z22 !s108 1638991504.000000
+R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_burst_adapter_uncmpr.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_burst_adapter_uncmpr.sv|
 !i113 1
-R19
 R20
+R21
 R9
 valtera_merlin_burst_uncompressor
 R13
@@ -196,12 +196,12 @@ R11
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_burst_uncompressor.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_burst_uncompressor.sv|
 !i113 1
-R19
 R20
+R21
 R9
 valtera_merlin_master_agent
 R13
-R21
+R14
 !i10b 1
 !s100 _CJm:YX=>U2LQKH;8=@cb0
 IeKbLI_=bIH[l[N^mESSNK2
@@ -221,12 +221,12 @@ R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_master_agent.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_master_agent.sv|
 !i113 1
-R19
 R20
+R21
 R9
 valtera_merlin_master_translator
 R13
-R21
+Z23 !s110 1639004208
 !i10b 1
 !s100 NdRk@]3fC2C@V7Rm;dQM31
 Ih]M`>5087<b<jcc1Yo8Dm3
@@ -242,16 +242,16 @@ R5
 r1
 !s85 0
 31
-R22
+!s108 1639004208.000000
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_master_translator.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_master_translator.sv|
 !i113 1
-R19
 R20
+R21
 R9
 valtera_merlin_slave_agent
 R13
-R21
+R14
 !i10b 1
 !s100 ePZN1d?B062J`OBb?blff3
 I2JXj3HH[:R3=nB;K<o>W71
@@ -262,7 +262,7 @@ R0
 R3
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_slave_agent.sv
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_slave_agent.sv
-Z23 L0 34
+Z24 L0 34
 R5
 r1
 !s85 0
@@ -271,12 +271,12 @@ R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_slave_agent.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_slave_agent.sv|
 !i113 1
-R19
 R20
+R21
 R9
 valtera_merlin_slave_translator
 R13
-R21
+R23
 !i10b 1
 !s100 k`9[YAn_dLTkg;GE`mOb61
 I0Y=i]GE_WaG@ZCnlR[R7h0
@@ -296,8 +296,8 @@ R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_slave_translator.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_slave_translator.sv|
 !i113 1
-R19
 R20
+R21
 R9
 valtera_merlin_width_adapter
 R13
@@ -321,17 +321,17 @@ R11
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_width_adapter.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_merlin_width_adapter.sv|
 !i113 1
-R19
 R20
+R21
 R9
 valtera_reset_controller
-R1
+Z25 !s110 1639004202
 !i10b 1
 !s100 z[H_hRO9gO=:^2E3_jWH03
 I4ViSK6MmL1ab8lkR_DdCb1
 R2
 R0
-Z24 w1637167558
+Z26 w1637167558
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_reset_controller.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_reset_controller.v
 L0 42
@@ -339,7 +339,7 @@ R5
 r1
 !s85 0
 31
-R6
+Z27 !s108 1639004202.000000
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_reset_controller.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_reset_controller.v|
 !i113 1
@@ -347,13 +347,13 @@ R7
 R8
 R9
 valtera_reset_synchronizer
-R1
+R25
 !i10b 1
 !s100 oWLYmSO[EOX[G0PgQhZ2=0
 ITD3czEg@RV72fLH^hoF461
 R2
 R0
-R24
+R26
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_reset_synchronizer.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_reset_synchronizer.v
 R12
@@ -361,7 +361,7 @@ R5
 r1
 !s85 0
 31
-R6
+R27
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_reset_synchronizer.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/altera_reset_synchronizer.v|
 !i113 1
@@ -391,13 +391,13 @@ R7
 R8
 R9
 vlab62soc
-R1
+R25
 !i10b 1
 !s100 n7Xb>bHk[>Q?R[lFCK7iR2
 ICU4_?gfMClAa8NXMDP]g32
 R2
 R0
-Z25 w1637167543
+Z28 w1637167543
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/lab62soc.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/lab62soc.v
 L0 6
@@ -405,7 +405,7 @@ R5
 r1
 !s85 0
 31
-R6
+R27
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/lab62soc.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/lab62soc.v|
 !i113 1
@@ -413,13 +413,13 @@ R7
 !s92 -vlog01compat -work lab62soc +incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis
 R9
 vlab62soc_hex_digits_pio
-Z26 !s110 1638991501
+Z29 !s110 1639004204
 !i10b 1
 !s100 <]YWHjoOaGj5Ci?_dnE1d2
 ITjMeVeQ1FG]b^0H_Fed7F2
 R2
 R0
-R25
+R28
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_hex_digits_pio.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_hex_digits_pio.v
 R4
@@ -427,7 +427,7 @@ R5
 r1
 !s85 0
 31
-Z27 !s108 1638991501.000000
+Z30 !s108 1639004204.000000
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_hex_digits_pio.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_hex_digits_pio.v|
 !i113 1
@@ -436,7 +436,7 @@ R8
 R9
 vlab62soc_irq_mapper
 R13
-Z28 !s110 1638991502
+R10
 !i10b 1
 !s100 RkF05A]oU2a6LaD]4SOIK2
 Iia6Pm=^b0BbcfjWdWRYG33
@@ -444,7 +444,7 @@ R2
 !s105 lab62soc_irq_mapper_sv_unit
 S1
 R0
-R24
+R26
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_irq_mapper.sv
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_irq_mapper.sv
 L0 31
@@ -452,131 +452,131 @@ R5
 r1
 !s85 0
 31
-Z29 !s108 1638991502.000000
+R11
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_irq_mapper.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_irq_mapper.sv|
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_jtag_uart_0
-R26
+R29
 !i10b 1
 !s100 QZE:]__?bElcJ?2Jk<`SN3
 I;M]9[oM>^6N127OHSWXGS3
 R2
 R0
-Z30 w1637167544
-Z31 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_jtag_uart_0.v
-Z32 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_jtag_uart_0.v
+Z31 w1637167544
+Z32 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_jtag_uart_0.v
+Z33 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_jtag_uart_0.v
 L0 331
 R5
 r1
 !s85 0
 31
-R27
-Z33 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_jtag_uart_0.v|
-Z34 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_jtag_uart_0.v|
+R30
+Z34 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_jtag_uart_0.v|
+Z35 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_jtag_uart_0.v|
 !i113 1
 R7
 R8
 R9
 vlab62soc_jtag_uart_0_scfifo_r
-R26
+R29
 !i10b 1
 !s100 ikTc5;YdMgO1;[hFHRD?^3
 IVgQ96Y]7a4;U8F09alGOa0
 R2
 R0
-R30
 R31
 R32
+R33
 L0 243
 R5
 r1
 !s85 0
 31
-R27
-R33
+R30
 R34
+R35
 !i113 1
 R7
 R8
 R9
 vlab62soc_jtag_uart_0_scfifo_w
-R26
+R29
 !i10b 1
 !s100 MHmWFARk6G;A0Yj1@GzaW1
 Imj7zhd4:=TNl_OE9[?FQk3
 R2
 R0
-R30
 R31
 R32
+R33
 L0 78
 R5
 r1
 !s85 0
 31
-R27
-R33
+R30
 R34
+R35
 !i113 1
 R7
 R8
 R9
 vlab62soc_jtag_uart_0_sim_scfifo_r
-R26
+R29
 !i10b 1
 !s100 GjLV;fJI]MdIdeFJHYMQ?0
 I]RKX7B6f?a7mgEZ]FCbzb1
 R2
 R0
-R30
 R31
 R32
+R33
 L0 164
 R5
 r1
 !s85 0
 31
-R27
-R33
+R30
 R34
+R35
 !i113 1
 R7
 R8
 R9
 vlab62soc_jtag_uart_0_sim_scfifo_w
-R26
+R29
 !i10b 1
 !s100 CCkk@_B7Z`2Q;QTkzc9LM1
 I;WWRGKogC;_5aBGP4HoMM3
 R2
 R0
-R30
 R31
 R32
+R33
 R4
 R5
 r1
 !s85 0
 31
-R27
-R33
+R30
 R34
+R35
 !i113 1
 R7
 R8
 R9
 vlab62soc_mm_interconnect_0
-R1
+R25
 !i10b 1
 !s100 LE04F]4bkRnJA3AB@?5b50
 IBeg`n44]h7df6Rz??c9Uc0
 R2
 R0
-R24
+R26
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0.v
 L0 9
@@ -584,7 +584,7 @@ R5
 r1
 !s85 0
 31
-R6
+R27
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0.v|
 !i113 1
@@ -598,7 +598,7 @@ R1
 I<z^YnX@XkBInCJR]HW>2J1
 R2
 R0
-Z35 w1637167562
+Z36 w1637167562
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter.v
 L0 9
@@ -620,7 +620,7 @@ R1
 I^8D?YQ=EL3n^[b0C3dQZK1
 R2
 R0
-R35
+R36
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_005.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_005.v
 L0 9
@@ -637,7 +637,7 @@ R8
 R9
 vlab62soc_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0
 R13
-R28
+R10
 !i10b 1
 !s100 h8b:aV946@E31DfXZaRnS1
 IzW4Cd[_kD>[AUDKBZ[O6g0
@@ -645,20 +645,20 @@ R2
 !s105 lab62soc_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0_sv_unit
 S1
 R0
-R35
+R36
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv
-Z36 L0 66
+Z37 L0 66
 R5
 r1
 !s85 0
 31
-R29
+R11
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv|
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0
 R13
@@ -670,10 +670,10 @@ R2
 !s105 lab62soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0_sv_unit
 S1
 R0
-R35
+R36
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv
-R36
+R37
 R5
 r1
 !s85 0
@@ -682,12 +682,12 @@ R11
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv|
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_cmd_demux
 R13
-R10
+R14
 !i10b 1
 !s100 D:3i;Xd:CUd?3Az<0nYbe0
 I@J2?2eO[87SAmm6CT_c?_1
@@ -698,21 +698,21 @@ R0
 R3
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_cmd_demux.sv
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_cmd_demux.sv
-Z37 L0 43
+Z38 L0 43
 R5
 r1
 !s85 0
 31
-R11
+R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_cmd_demux.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_cmd_demux.sv|
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_cmd_mux
 R13
-R10
+R14
 !i10b 1
 !s100 bG`zN5cPG@95NU_CXJB913
 I_FBj^SG8T^6GhgR4G:]oK0
@@ -723,171 +723,171 @@ R0
 R3
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_cmd_mux.sv
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_cmd_mux.sv
-Z38 L0 51
+Z39 L0 51
 R5
 r1
 !s85 0
 31
-R11
+R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_cmd_mux.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_cmd_mux.sv|
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_router
 R13
-R21
+R14
 !i10b 1
 !s100 OMRGH`?F17nTF@2;FMB3;3
 I2mkaDAOzaPYL0Fid8hZhK3
 R2
-Z39 !s105 lab62soc_mm_interconnect_0_router_sv_unit
+Z40 !s105 lab62soc_mm_interconnect_0_router_sv_unit
 S1
 R0
 R3
-Z40 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router.sv
-Z41 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router.sv
-Z42 L0 84
+Z41 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router.sv
+Z42 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router.sv
+Z43 L0 84
 R5
 r1
 !s85 0
 31
 R22
-Z43 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router.sv|
-Z44 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router.sv|
+Z44 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router.sv|
+Z45 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router.sv|
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_router_002
 R13
-R21
+R14
 !i10b 1
 !s100 MWEkO[iaP^3`jSG79ZTih3
 I_46R[mh4OhKUAA0f;k:=23
 R2
-Z45 !s105 lab62soc_mm_interconnect_0_router_002_sv_unit
+Z46 !s105 lab62soc_mm_interconnect_0_router_002_sv_unit
 S1
 R0
 R3
-Z46 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_002.sv
-Z47 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_002.sv
-R42
+Z47 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_002.sv
+Z48 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_002.sv
+R43
 R5
 r1
 !s85 0
 31
 R22
-Z48 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_002.sv|
-Z49 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_002.sv|
+Z49 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_002.sv|
+Z50 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_002.sv|
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_router_002_default_decode
 R13
-R21
+R14
 !i10b 1
 !s100 `;K:aNGQoWVX;Wf5IeMY21
 I9n0MNo8_l:0n5mYKQdZiO0
 R2
-R45
+R46
 S1
 R0
 R3
-R46
 R47
-Z50 L0 45
+R48
+Z51 L0 45
 R5
 r1
 !s85 0
 31
 R22
-R48
 R49
+R50
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_router_007
 R13
-R21
+R14
 !i10b 1
 !s100 SWQh;>gzj3<:zRHK^@hKW1
 Ic5MZ^77mOJCLSY8bbDL4;3
 R2
-Z51 !s105 lab62soc_mm_interconnect_0_router_007_sv_unit
+Z52 !s105 lab62soc_mm_interconnect_0_router_007_sv_unit
 S1
 R0
 R3
-Z52 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_007.sv
-Z53 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_007.sv
-R42
+Z53 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_007.sv
+Z54 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_007.sv
+R43
 R5
 r1
 !s85 0
 31
 R22
-Z54 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_007.sv|
-Z55 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_007.sv|
+Z55 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_007.sv|
+Z56 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_router_007.sv|
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_router_007_default_decode
 R13
-R21
+R14
 !i10b 1
 !s100 D1P=N6_;nZjl=XR_Na?5_3
 IEL0D0G7iAY]ZYYL=BJK=X0
 R2
-R51
+R52
 S1
 R0
 R3
-R52
 R53
-R50
+R54
+R51
 R5
 r1
 !s85 0
 31
 R22
-R54
 R55
+R56
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_router_default_decode
 R13
-R21
+R14
 !i10b 1
 !s100 U[bJ^jz2>?E>L:5Y5iZRD0
 IY^aC@9lQ^WGzDEGKRR[G>0
 R2
-R39
+R40
 S1
 R0
 R3
-R40
 R41
-R50
+R42
+R51
 R5
 r1
 !s85 0
 31
 R22
-R43
 R44
+R45
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_rsp_demux
 R13
-R10
+R14
 !i10b 1
 !s100 [?0fL1iALQJ2JSPVC6_jd1
 I:]Yh7I^IEH_?71`3mTaDd0
@@ -898,17 +898,17 @@ R0
 R3
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_rsp_demux.sv
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_rsp_demux.sv
-R37
+R38
 R5
 r1
 !s85 0
 31
-R11
+R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_rsp_demux.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_rsp_demux.sv|
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_mm_interconnect_0_rsp_mux
 R13
@@ -923,7 +923,7 @@ R0
 R3
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_rsp_mux.sv
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_rsp_mux.sv
-R38
+R39
 R5
 r1
 !s85 0
@@ -932,17 +932,17 @@ R11
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_rsp_mux.sv|
 !s90 -reportprogress|300|-sv|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_mm_interconnect_0_rsp_mux.sv|
 !i113 1
-R19
 R20
+R21
 R9
 vlab62soc_nios2_gen2_0
-Z56 !s110 1638991500
+R1
 !i10b 1
 !s100 Ni_Co1@CBYzan6^8k^=613
 II]o`>^oNZnmiA6I_QhRAB3
 R2
 R0
-R30
+R31
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0.v
 L0 9
@@ -950,7 +950,7 @@ R5
 r1
 !s85 0
 31
-Z57 !s108 1638991500.000000
+R6
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0.v|
 !i113 1
@@ -958,29 +958,29 @@ R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu
-R56
+R29
 !i10b 1
 !s100 T?[<mkMV<0JA`AoU5oSUO1
 IBoiLeVg98YU^gW72kQ2oA1
 R2
 R0
 R3
-Z58 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu.v
-Z59 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu.v
+Z57 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu.v
+Z58 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu.v
 L0 2834
 R5
 r1
 !s85 0
 31
-R57
-Z60 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu.v|
-Z61 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu.v|
+R30
+Z59 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu.v|
+Z60 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu.v|
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_debug_slave_sysclk
-R56
+R29
 !i10b 1
 !s100 OP;FY6d7dIkS2fHmWQ=8E2
 Ig8Z<_7Y`4@fRW43Aj^g7>2
@@ -994,7 +994,7 @@ R5
 r1
 !s85 0
 31
-R57
+R30
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu_debug_slave_sysclk.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu_debug_slave_sysclk.v|
 !i113 1
@@ -1002,7 +1002,7 @@ R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_debug_slave_tck
-R56
+R29
 !i10b 1
 !s100 a<6:8J68RS9<XB`b>mPS22
 I309AK<NUJEEBh4knWA5l`0
@@ -1016,7 +1016,7 @@ R5
 r1
 !s85 0
 31
-R57
+R30
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu_debug_slave_tck.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu_debug_slave_tck.v|
 !i113 1
@@ -1024,7 +1024,7 @@ R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_debug_slave_wrapper
-R56
+R29
 !i10b 1
 !s100 =GVCURcXNf?i27zPKUVz[0
 IKUGDnj0nh[E1?U9hnAmme2
@@ -1038,7 +1038,7 @@ R5
 r1
 !s85 0
 31
-R57
+R30
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu_debug_slave_wrapper.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu_debug_slave_wrapper.v|
 !i113 1
@@ -1046,447 +1046,447 @@ R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_avalon_reg
-R56
+R29
 !i10b 1
 !s100 >>iAXcaONk1bB5gncDgzX3
 I0ngWB1;YOcl`JNmNj:GLl0
 R2
 R0
 R3
+R57
 R58
-R59
 L0 2023
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci
-R56
+R29
 !i10b 1
 !s100 J1GV>h1<ejU2l`3G6[OAJ3
 IOVQ5_<8MSaFCz[_<7YeZN0
 R2
 R0
 R3
+R57
 R58
-R59
 L0 2362
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_break
-R56
+R29
 !i10b 1
 !s100 iO_EkUG:NI>bT:;i31k]@0
 I4ffKIkfk3CjGzkNcz0Pj02
 R2
 R0
 R3
+R57
 R58
-R59
 L0 295
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_compute_input_tm_cnt
-R56
+R29
 !i10b 1
 !s100 ];YLO8FaOHce55P9nPA8Q1
 Ij<^g3U7nblLC?cb4e;fYg0
 R2
 R0
 R3
+R57
 R58
-R59
 L0 1265
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_dbrk
-R56
+R29
 !i10b 1
 !s100 YoYAkHMWDcmIR]FeFbFU=0
 IK9FCDzaHcNXlc9F[=@8em1
 R2
 R0
 R3
+R57
 R58
-R59
 L0 795
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_debug
-R56
+R29
 !i10b 1
 !s100 1_IY@>H6g>Tzc`f2W?W^l1
 IjC_<3Uni^>[V_8Ie1aVa43
 R2
 R0
 R3
+R57
 R58
-R59
 L0 153
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_dtrace
-R56
+R29
 !i10b 1
 !s100 jMKZXWIS5h3ck_DB1AbA91
 IaSRA]bBR=BE8?U915SkX^3
 R2
 R0
 R3
+R57
 R58
-R59
 L0 1183
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_fifo
-R56
+R29
 !i10b 1
 !s100 =A`IAAiifAzmkgHV^^n]40
 IIWb]7fFhlg]AoSWmGzR1c1
 R2
 R0
 R3
+R57
 R58
-R59
 L0 1427
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_fifo_cnt_inc
-R56
+R29
 !i10b 1
 !s100 z]f9E;UnWH4c@ZG1NWaoH2
 IO7nz<5zS@`LS7hN8:@iTL0
 R2
 R0
 R3
+R57
 R58
-R59
 L0 1380
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_fifo_wrptr_inc
-R56
+R29
 !i10b 1
 !s100 V7P0oWacX0ePEocWl??XO0
 IfU]>XRS^0Ai>TO7nfD:^?0
 R2
 R0
 R3
+R57
 R58
-R59
 L0 1337
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_im
-R56
+R29
 !i10b 1
 !s100 zdha3KzX9>GJRP4lQ3g_L2
 I41k`N8Wd@W^ARQ`i]kGUh0
 R2
 R0
 R3
+R57
 R58
-R59
 L0 1936
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_itrace
-R56
+R29
 !i10b 1
 !s100 a<KFRPYZ9M>iz7G6kW[hj0
 I:a3R7;YZH;f<L:^M<L36R2
 R2
 R0
 R3
+R57
 R58
-R59
 L0 982
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_pib
-R56
+R29
 !i10b 1
 !s100 6PRf8;`aCc]Wbmf<h:C?o2
 IcUYhLMAlZ8RNEJjChQf`e2
 R2
 R0
 R3
+R57
 R58
-R59
 L0 1913
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_td_mode
-R56
+R29
 !i10b 1
 !s100 kGQLGU^VnALmUnd6FHi]B0
 I_R67VkccD7gH7=^gklJWL0
 R2
 R0
 R3
+R57
 R58
-R59
 L0 1115
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_oci_xbrk
-R56
+R29
 !i10b 1
 !s100 BaiL`D<IXHmZGn_h2=7AW0
 ITCUioTE`6HPmC90YKQOYV3
 R2
 R0
 R3
+R57
 R58
-R59
 L0 588
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_ocimem
-R56
+R29
 !i10b 1
 !s100 =WOfXZ3V=nRPAm@_>Nh:Y3
 IWRT5C=PCeJK;MlOY25>@d2
 R2
 R0
 R3
+R57
 R58
-R59
 L0 2181
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_nios2_performance_monitors
-R56
+R29
 !i10b 1
 !s100 b_:]Wei8b7HHicFkg8Hf@0
 I^i:FV_VUT]N:OValjI6^01
 R2
 R0
 R3
+R57
 R58
-R59
 L0 2006
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_ociram_sp_ram_module
-R56
+R29
 !i10b 1
 !s100 JHeGn==eW_2i1MZ;<gm^^1
 IW7<WbLelNB]TCcB5zQL`W1
 R2
 R0
 R3
+R57
 R58
-R59
 L0 2116
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_register_bank_a_module
-R56
+R29
 !i10b 1
 !s100 _Nf8U5Jl;LT?CNE><3mI23
 IV7G:2k2=oEfX?I8ck4WU51
 R2
 R0
 R3
+R57
 R58
-R59
 R4
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_register_bank_b_module
-R56
+R29
 !i10b 1
 !s100 BMPM2bA3j<cUYSS2T`l_D0
 I;[h50gko<:dldzj9f2hae2
 R2
 R0
 R3
+R57
 R58
-R59
 L0 87
 R5
 r1
 !s85 0
 31
-R57
+R30
+R59
 R60
-R61
 !i113 1
 R7
 R8
 R9
 vlab62soc_nios2_gen2_0_cpu_test_bench
-R26
+R29
 !i10b 1
 !s100 Q7Y_c0nBVoJ8O0[T?G[7g3
 Io6mhF3=D?JjMDdU]5@3^93
@@ -1500,7 +1500,7 @@ R5
 r1
 !s85 0
 31
-R57
+R30
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu_test_bench.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_nios2_gen2_0_cpu_test_bench.v|
 !i113 1
@@ -1508,145 +1508,145 @@ R7
 R8
 R9
 vlab62soc_sdram
-R56
+R1
 !i10b 1
 !s100 ;FhaPQ67gQ[fJaAzNTXK=2
 I^JhihHlbg9DSzbhzo59F]3
 R2
 R0
-Z62 w1637167545
-Z63 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram.v
-Z64 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram.v
+Z61 w1637167545
+Z62 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram.v
+Z63 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram.v
 L0 159
 R5
 r1
 !s85 0
 31
-R57
-Z65 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram.v|
-Z66 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram.v|
+R6
+Z64 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram.v|
+Z65 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram.v|
 !i113 1
 R7
 R8
 R9
 vlab62soc_sdram_input_efifo_module
-R56
+R1
 !i10b 1
 !s100 Mgmh6^AjCh2a=fF3kUe>m2
 IM;ilf;Z7J2Ob8YBz@J6Dk2
 R2
 R0
+R61
 R62
 R63
-R64
 R4
 R5
 r1
 !s85 0
 31
-R57
+R6
+R64
 R65
-R66
 !i113 1
 R7
 R8
 R9
 vlab62soc_sdram_pll
-R56
+R1
 !i10b 1
 !s100 E^HCBmfU255=QEWe=j8D[1
 I]K1ILW?FI@PkXQz8eG5Z]2
 R2
 R0
-Z67 w1637167546
-Z68 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram_pll.v
-Z69 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram_pll.v
+Z66 w1637167546
+Z67 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram_pll.v
+Z68 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram_pll.v
 L0 217
 R5
 r1
 !s85 0
 31
-R57
-Z70 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram_pll.v|
-Z71 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram_pll.v|
+R6
+Z69 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram_pll.v|
+Z70 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sdram_pll.v|
 !i113 1
 R7
 R8
 R9
 vlab62soc_sdram_pll_altpll_vg92
-R56
+R1
 !i10b 1
 !s100 @>0UJS;B2ohi>hAXgVYZi2
 II3MU5[41fR;OfIfC^?NQ=0
 R2
 R0
+R66
 R67
 R68
-R69
 L0 130
 R5
 r1
 !s85 0
 31
-R57
+R6
+R69
 R70
-R71
 !i113 1
 R7
 R8
 R9
 vlab62soc_sdram_pll_dffpipe_l2c
-R56
+R1
 !i10b 1
 !s100 <5@fhgC5hi1K5;0L5W=TC1
 IHBW]F=`C2FHYz[;o=;2A73
 R2
 R0
+R66
 R67
 R68
-R69
 L0 37
 R5
 r1
 !s85 0
 31
-R57
+R6
+R69
 R70
-R71
 !i113 1
 R7
 R8
 R9
 vlab62soc_sdram_pll_stdsync_sv6
-R56
+R1
 !i10b 1
 !s100 d7b6>k`jg`CLoo=;O?`JF2
 I7l5aY`3C7IoFcm<`gfIZ61
 R2
 R0
+R66
 R67
 R68
-R69
 L0 98
 R5
 r1
 !s85 0
 31
-R57
+R6
+R69
 R70
-R71
 !i113 1
 R7
 R8
 R9
 vlab62soc_spi0
-R56
+R1
 !i10b 1
 !s100 ]QSj]8TWHgX7^XE?N0U;G1
 IiXECdzSZNkQ?b5U@d7eM<0
 R2
 R0
-R67
+R66
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_spi0.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_spi0.v
 L0 41
@@ -1654,7 +1654,7 @@ R5
 r1
 !s85 0
 31
-R57
+R6
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_spi0.v|
 !s90 -reportprogress|300|-vlog01compat|-work|lab62soc|+incdir+C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules|C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_spi0.v|
 !i113 1
@@ -1662,16 +1662,16 @@ R7
 R8
 R9
 vlab62soc_sysid_qsys_0
-R56
+R1
 !i10b 1
 !s100 =Uzian[8:^Jg`AhJaKOak3
 IbYCN`o6A6Q^gP6Jz9mBC62
 R2
 R0
-R67
+R66
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sysid_qsys_0.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_sysid_qsys_0.v
-R23
+R24
 R5
 r1
 !s85 0
@@ -1690,7 +1690,7 @@ R1
 I_<f]oS[HN6Snc>?PN:^h`1
 R2
 R0
-Z72 w1637167547
+Z71 w1637167547
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_timer_0.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_timer_0.v
 R4
@@ -1712,7 +1712,7 @@ R1
 I6RLlLlA8N63NfAXfb77RI1
 R2
 R0
-R72
+R71
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_usb_gpx.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_usb_gpx.v
 R4
@@ -1734,7 +1734,7 @@ R1
 I3R6RQ7Q3^YVjHaG>f``5Y3
 R2
 R0
-R72
+R71
 8C:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_usb_rst.v
 FC:/Users/caleb/Desktop/fpga-pacman/lab62soc/synthesis/submodules/lab62soc_usb_rst.v
 R4

@@ -1,4 +1,4 @@
-module  redghost ( input Clk, Reset, frame_clk, restart, sec,
+module  redghost ( input Clk, Reset, frame_clk, pause, sec,
 						 input [4:0] mapL, mapR, mapB, mapT,
 						 input [7:0] randomkeycode,
                output logic [9:0]  redghostX, redghostY, redghostS
@@ -26,7 +26,7 @@ module  redghost ( input Clk, Reset, frame_clk, restart, sec,
 					redghost_Y_Pos <= redghost_Y_Center;
 					redghost_X_Pos <= redghost_X_Center;
 				end 
-		  else if (restart)
+		  else if (pause)
 				begin 
 					redghost_Y_Motion <= 10'd0; //redghost_Y_Step;
 					redghost_X_Motion <= 10'd0; //redghost_X_Step;

@@ -10,15 +10,15 @@ cModel Technology
 Z0 dC:/Users/caleb/Desktop/fpga-pacman/simulation/modelsim
 vball
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1638991501
+Z2 !s110 1639004205
 !i10b 1
-!s100 S^F?oP;72MF?zDPOCILjC1
-I>84_z:f<Zfai[Mh3kncg12
+!s100 6?i2nWYhf:ZiLDJPfk`DB0
+IajDJHKT<SLLBT9@1UG6j[0
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 !s105 ball_sv_unit
 S1
 R0
-w1638924013
+w1639002165
 8C:/Users/caleb/Desktop/fpga-pacman/ball.sv
 FC:/Users/caleb/Desktop/fpga-pacman/ball.sv
 L0 16
@@ -26,7 +26,7 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1638991501.000000
+Z5 !s108 1639004205.000000
 !s107 C:/Users/caleb/Desktop/fpga-pacman/ball.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/ball.sv|
 !i113 1
@@ -37,13 +37,13 @@ vcolor_mapper
 R1
 R2
 !i10b 1
-!s100 _1`meWEm2;2nge[I^za=M3
-Ia4M^3<R8Q5fWdJkhm;RN30
+!s100 @P37<=YY4W@a<F3XoCeln2
+II_:0^5ngD8CDFW=dQGo`e0
 R3
 !s105 Color_Mapper_sv_unit
 S1
 R0
-w1638991473
+w1638992712
 8C:/Users/caleb/Desktop/fpga-pacman/Color_Mapper.sv
 FC:/Users/caleb/Desktop/fpga-pacman/Color_Mapper.sv
 L0 15
@@ -60,15 +60,15 @@ R7
 R8
 vcounter_reg
 R1
-Z9 !s110 1638991502
+Z9 !s110 1639004206
 !i10b 1
-!s100 C88z5RVZEFbU4]m;NW[KZ1
-I26PGjARMz3aRHeUa6hIFZ3
+!s100 1ba?fBh4f==aUT^0V90_i3
+IaiaSaUPcPR9CoY07Y^J=N2
 R3
 !s105 counter_reg_sv_unit
 S1
 R0
-w1638990873
+w1638993728
 8C:/Users/caleb/Desktop/fpga-pacman/counter_reg.sv
 FC:/Users/caleb/Desktop/fpga-pacman/counter_reg.sv
 L0 1
@@ -76,7 +76,7 @@ R4
 r1
 !s85 0
 31
-Z10 !s108 1638991502.000000
+Z10 !s108 1639004206.000000
 !s107 C:/Users/caleb/Desktop/fpga-pacman/counter_reg.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/counter_reg.sv|
 !i113 1
@@ -85,7 +85,7 @@ R7
 R8
 vdir_reg
 R1
-R9
+R2
 !i10b 1
 !s100 G5alDoN8^:YAHOI<B^5]@2
 Iia3GPOk^j;>RNXjH5f3]22
@@ -101,7 +101,7 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 C:/Users/caleb/Desktop/fpga-pacman/dir_reg.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/dir_reg.sv|
 !i113 1
@@ -110,15 +110,15 @@ R7
 R8
 vdot
 R1
-R9
+R2
 !i10b 1
-!s100 Rm3BF;[PbOD[_nmG::2:]3
-IcnnKGOj@<A=;0XQJE6EJR2
+!s100 Mg4F6F^Z[NDDO0;XoDj@l1
+IjU9Vfhb?m1O=J@K1In5270
 R3
 Z11 !s105 dots_sv_unit
 S1
 R0
-Z12 w1638922864
+Z12 w1638994349
 Z13 8C:/Users/caleb/Desktop/fpga-pacman/dots.sv
 Z14 FC:/Users/caleb/Desktop/fpga-pacman/dots.sv
 L0 1
@@ -126,7 +126,7 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 Z15 !s107 C:/Users/caleb/Desktop/fpga-pacman/dots.sv|
 Z16 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/dots.sv|
 !i113 1
@@ -135,7 +135,7 @@ R7
 R8
 vdot_reg
 R1
-R9
+R2
 !i10b 1
 !s100 _:WjeUl0TMiV86R9EP3nL1
 IZTQfE2z@zmg5aD=PkRUIn3
@@ -151,7 +151,7 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 C:/Users/caleb/Desktop/fpga-pacman/dot_reg.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/dot_reg.sv|
 !i113 1
@@ -160,10 +160,10 @@ R7
 R8
 vdots
 R1
-R9
+R2
 !i10b 1
-!s100 :@]NhDbEUKaKhH=HLCZSN2
-IIeJWJU1m@DnURdNX2c=ZV1
+!s100 aJoaiT63>i:k:DDb]<giP0
+IC@N0WgD>?m660b5II8D?43
 R3
 R11
 S1
@@ -171,12 +171,12 @@ R0
 R12
 R13
 R14
-L0 24
+Z17 L0 25
 R4
 r1
 !s85 0
 31
-R10
+R5
 R15
 R16
 !i113 1
@@ -185,7 +185,7 @@ R7
 R8
 vdots_left_reg
 R1
-R9
+R2
 !i10b 1
 !s100 I[z5V6QN[9z;m=kg3dCfi0
 I=PTWcjelZj_J7Fo7>4[eR2
@@ -201,41 +201,16 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 C:/Users/caleb/Desktop/fpga-pacman/dots_left_reg.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/dots_left_reg.sv|
 !i113 1
 R6
 R7
 R8
-vdots_test
-R1
-R9
-!i10b 1
-!s100 Miaj<M>>dhe:CF@Q@JQYf0
-I:@OWj`YllmfW7O>Ng@9So2
-R3
-!s105 dots_test_sv_unit
-S1
-R0
-w1638985945
-8C:/Users/caleb/Desktop/fpga-pacman/dots_test.sv
-FC:/Users/caleb/Desktop/fpga-pacman/dots_test.sv
-L0 1
-R4
-r1
-!s85 0
-31
-R10
-!s107 C:/Users/caleb/Desktop/fpga-pacman/dots_test.sv|
-!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/dots_test.sv|
-!i113 1
-R6
-R7
-R8
 vfont_rom
 R1
-R2
+Z18 !s110 1639004204
 !i10b 1
 !s100 nXf36Hef`mS:7efZS5`4A3
 IHghMkUG4lDaV5NdViE<823
@@ -251,7 +226,7 @@ R4
 r1
 !s85 0
 31
-R5
+Z19 !s108 1639004204.000000
 !s107 C:/Users/caleb/Desktop/fpga-pacman/font_rom.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/font_rom.sv|
 !i113 1
@@ -260,7 +235,7 @@ R7
 R8
 vfruits_reg
 R1
-R9
+R2
 !i10b 1
 !s100 `81QEcm60>SHSdE?YJTdD2
 IV4i`O_NJ]eLF]eF5b:KXE0
@@ -276,7 +251,7 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 C:/Users/caleb/Desktop/fpga-pacman/output_files/fruits_reg.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman/output_files|C:/Users/caleb/Desktop/fpga-pacman/output_files/fruits_reg.sv|
 !i113 1
@@ -287,13 +262,13 @@ vgame_logic
 R1
 R2
 !i10b 1
-!s100 5E7P6`=C5><1SYG]bHaKF1
-I^<[T2?;@CbZ?gNfe:KI6i3
+!s100 eTPHLb:HgnJc6WPJ[?LXM2
+IBER<N^REU?VeEnggBn?oz1
 R3
 !s105 game_logic_sv_unit
 S1
 R0
-w1638990661
+w1639001799
 8C:/Users/caleb/Desktop/fpga-pacman/game_logic.sv
 FC:/Users/caleb/Desktop/fpga-pacman/game_logic.sv
 L0 1
@@ -318,7 +293,7 @@ R3
 !s105 HexDriver_sv_unit
 S1
 R0
-Z17 w1637080638
+Z20 w1637080638
 8C:/Users/caleb/Desktop/fpga-pacman/HexDriver.sv
 FC:/Users/caleb/Desktop/fpga-pacman/HexDriver.sv
 L0 1
@@ -336,7 +311,7 @@ R8
 n@hex@driver
 vitems_ram
 R1
-Z18 !s110 1638991504
+Z21 !s110 1639004208
 !i10b 1
 !s100 j8[4Ea=W7i@E>1I:[1a7a2
 IXK1?OCa^BS5PaPllBk;gQ0
@@ -352,7 +327,7 @@ R4
 r1
 !s85 0
 31
-Z19 !s108 1638991504.000000
+Z22 !s108 1639004208.000000
 !s107 C:/Users/caleb/Desktop/fpga-pacman/items_ram.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/items_ram.sv|
 !i113 1
@@ -363,13 +338,13 @@ vlab62
 R1
 R2
 !i10b 1
-!s100 X3]W2lS5dFedBzjOJ7N;71
-IXjRmGLOS0?LXSJgmdkbDi3
+!s100 0Hh>F^]_NYJEkK2jAnVWO2
+IH@P][fRS7[NaC`<`bbaiU2
 R3
 !s105 lab62_sv_unit
 S1
 R0
-w1638991456
+w1638994804
 8C:/Users/caleb/Desktop/fpga-pacman/lab62.sv
 FC:/Users/caleb/Desktop/fpga-pacman/lab62.sv
 L0 9
@@ -402,7 +377,7 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lfsr_reg.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/lfsr_reg.sv|
 !i113 1
@@ -411,7 +386,7 @@ R7
 R8
 vlives_reg
 R1
-R9
+R2
 !i10b 1
 !s100 ib32gSinW9LdKQ8l59VCj0
 IPX0mNH:VcS0cmhc[W2AZQ2
@@ -427,7 +402,7 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 C:/Users/caleb/Desktop/fpga-pacman/lives_reg.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/lives_reg.sv|
 !i113 1
@@ -436,7 +411,7 @@ R7
 R8
 vmap_mask
 R1
-R2
+R18
 !i10b 1
 !s100 l[=R0^_kzMJD9d[;:KlE[3
 IcNf]dihMk2Ejg6dDF_fLG1
@@ -452,7 +427,7 @@ R4
 r1
 !s85 0
 31
-R5
+R19
 !s107 C:/Users/caleb/Desktop/fpga-pacman/map_mask.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/map_mask.sv|
 !i113 1
@@ -463,13 +438,13 @@ vorangeghost
 R1
 R9
 !i10b 1
-!s100 019CH>hJl<UfPHi[>4G9T1
-I0aCBgG208UPZ4AXgMAAM92
+!s100 <m@5BRnXaT@EBhla9`DZ00
+I=KIjJhd4ce2NFISDnNT`j3
 R3
 !s105 orangeghost_sv_unit
 S1
 R0
-w1638923979
+w1638994876
 8C:/Users/caleb/Desktop/fpga-pacman/orangeghost.sv
 FC:/Users/caleb/Desktop/fpga-pacman/orangeghost.sv
 L0 1
@@ -486,7 +461,7 @@ R7
 R8
 vorangeghost_ram
 R1
-R18
+R21
 !i10b 1
 !s100 PbX58okS`;WnEK=VflAUD1
 IkNeO^K^<[17XQ6DMCc2BA3
@@ -502,7 +477,7 @@ R4
 r1
 !s85 0
 31
-R19
+R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/orangeghost_ram.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/orangeghost_ram.sv|
 !i113 1
@@ -511,7 +486,7 @@ R7
 R8
 vpacman_ram
 R1
-R18
+R21
 !i10b 1
 !s100 POz8Mg>OU@hVLGPFbhVG12
 I`ACigMkaU3agOooR:CP5=0
@@ -527,7 +502,7 @@ R4
 r1
 !s85 0
 31
-R19
+R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/pacman_ram.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/pacman_ram.sv|
 !i113 1
@@ -536,15 +511,15 @@ R7
 R8
 vrandom_dir
 R1
-R9
+R2
 !i10b 1
-!s100 P;bCFVoJ^<]?zW`O>2Y^U1
-ID7?2FPCdKIPd<]9MSloRf0
+!s100 UThSW5ZO`o?G;Y?hWfQ;P0
+I@RU@4n0=lMLeg;EGWoe]?3
 R3
 !s105 random_dir_sv_unit
 S1
 R0
-w1638983733
+w1638998473
 8C:/Users/caleb/Desktop/fpga-pacman/random_dir.sv
 FC:/Users/caleb/Desktop/fpga-pacman/random_dir.sv
 L0 1
@@ -552,7 +527,7 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 C:/Users/caleb/Desktop/fpga-pacman/random_dir.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/random_dir.sv|
 !i113 1
@@ -563,13 +538,13 @@ vredghost
 R1
 R2
 !i10b 1
-!s100 i_TWA0j^VdeMhbkS:WR@@0
-IliC4JenZfS<IU_C@:fPIR0
+!s100 5f`SKGW^NaIPVIR_ZDbW[3
+Iz0_7:k3o7zjTPA4^GJ<4h0
 R3
 !s105 redghost_sv_unit
 S1
 R0
-w1638923990
+w1638994839
 8C:/Users/caleb/Desktop/fpga-pacman/redghost.sv
 FC:/Users/caleb/Desktop/fpga-pacman/redghost.sv
 L0 1
@@ -586,7 +561,7 @@ R7
 R8
 vredghost_ram
 R1
-R18
+R21
 !i10b 1
 !s100 YgHoVc5Aoi94o]jc@fdl^2
 I@A=BT_cN2W?1aFKZ2Bde:0
@@ -602,7 +577,7 @@ R4
 r1
 !s85 0
 31
-R19
+R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/redghost_ram.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/redghost_ram.sv|
 !i113 1
@@ -611,15 +586,15 @@ R7
 R8
 vscore_ram
 R1
-R2
+R18
 !i10b 1
-!s100 nzV6ZTbR48on2TY`@aU<z1
-I>S^@l>Uhn8<X^D@3Un4<c1
+!s100 gSol6IFOCmP<5S_6F8>Z?3
+IIc:Vm`@c[dMn[z1YCK[kA1
 R3
 !s105 score_ram_sv_unit
 S1
 R0
-w1638925372
+w1638993706
 8C:/Users/caleb/Desktop/fpga-pacman/score_ram.sv
 FC:/Users/caleb/Desktop/fpga-pacman/score_ram.sv
 L0 1
@@ -627,7 +602,7 @@ R4
 r1
 !s85 0
 31
-R5
+R19
 !s107 C:/Users/caleb/Desktop/fpga-pacman/score_ram.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/score_ram.sv|
 !i113 1
@@ -663,13 +638,13 @@ vsecond_counter
 R1
 R9
 !i10b 1
-!s100 G7@aWnA^If_79bQ^9Zdo02
-If;Ykb9^3gkga3GiBh@8;H3
+!s100 GfX_2]=8`OF@LU<0MbF[40
+IK6JB7h`1D6@`=dF;El?h81
 R3
 !s105 second_counter_sv_unit
 S1
 R0
-w1638990622
+w1638998353
 8C:/Users/caleb/Desktop/fpga-pacman/second_counter.sv
 FC:/Users/caleb/Desktop/fpga-pacman/second_counter.sv
 L0 1
@@ -686,15 +661,15 @@ R7
 R8
 vtestbench
 R1
-!s110 1638991505
+R21
 !i10b 1
-!s100 82dPi3bW:DPo?lM5;ZcIA3
-IeHK3>;o8WeH;cUb2HTWlW3
+!s100 TjUPbdi[8ozDX@SXPlDT`2
+I<dUmO@Jei=:2W6oJiB<Ld3
 R3
 !s105 testbench_sv_unit
 S1
 R0
-w1638990914
+w1639003930
 8C:/Users/caleb/Desktop/fpga-pacman/testbench.sv
 FC:/Users/caleb/Desktop/fpga-pacman/testbench.sv
 L0 1
@@ -702,7 +677,7 @@ R4
 r1
 !s85 0
 31
-R19
+R22
 !s107 C:/Users/caleb/Desktop/fpga-pacman/testbench.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/testbench.sv|
 !i113 1
@@ -719,15 +694,15 @@ R3
 !s105 VGA_controller_sv_unit
 S1
 R0
-R17
+R20
 8C:/Users/caleb/Desktop/fpga-pacman/VGA_controller.sv
 FC:/Users/caleb/Desktop/fpga-pacman/VGA_controller.sv
-L0 25
+R17
 R4
 r1
 !s85 0
 31
-R5
+R19
 !s107 C:/Users/caleb/Desktop/fpga-pacman/VGA_controller.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/caleb/Desktop/fpga-pacman|C:/Users/caleb/Desktop/fpga-pacman/VGA_controller.sv|
 !i113 1

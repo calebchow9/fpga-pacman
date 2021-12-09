@@ -6,7 +6,7 @@ module counter_reg (input Clk, Reset, Load,
 			always_ff @(posedge Clk)
 			begin
 				if(Reset)
-					Data_out <= 32'd100;
+					Data_out <= 32'd150;
 				else if(Load)
 					Data_out <= Data_in;
 
