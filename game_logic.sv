@@ -249,12 +249,16 @@ module game_logic (input logic Clk, Reset,
 				lifeDown = 1'b1;
 				
 			Game_over:
-				lose = 1'b1;
-				pause = 1'b1;
+				begin
+					lose = 1'b1;
+					pause = 1'b1;
+				end
 			
 			Game_won:
-				win = 1'b1;
-				pause = 1'b1;
+				begin
+					win = 1'b1;
+					pause = 1'b1;
+				end
 				
 			Run: ;
 			
